@@ -3,7 +3,7 @@ import { AuthActionTypes } from "./actionType";
 import { ActionModel, LoginType, RegisterType } from "./model";
 import { AuthApi } from "./api";
 import axios from '../../AxiosConfig';
-
+import { EModal } from "../../Utils/Errors/Modal";
 export const AuthActions = {
 
     //open or close login modal 
@@ -26,7 +26,7 @@ export const AuthActions = {
         } catch (error) {
             //loagin perosses faild
             dispatch({type: AuthActionTypes.LoginFail})
-            alert(error.response.data.message)
+            EModal(error)
         }
         
     },
@@ -46,7 +46,8 @@ export const AuthActions = {
         } catch (error) {
             //loagin perosses faild
             dispatch({type: AuthActionTypes.LoginFail})
-            alert(error.response.data.message)
+                EModal(error)
+            console.log(error)
         }
         
     },

@@ -33,34 +33,36 @@ class UserController extends Controller
     public function token($request, $response) {
         $token = $this->getToken(1, "mehran");
         $data = array('token' => $token);
-        return $response->withStatus(500)->withJson($data);
+        return $response->withStatus(200)->withJson($data);
     }
 
-    public function create ($request, $response) {
+    public function login($request, $response) {
+        $user = User::where('email', $request->getParam('email'))->first();
+        // return $response->withStatus(400)->withJson($user);
+        if($user){
+            $token = $this->getToken($user->id, $user->name);
+            $data = array('token' => $token);
+            return $response->withStatus(200)->withJson($data);
+        }
 
-        User::create([
-            'name'=> 'Mehran Ganjgahi',
-            'email'=> 'Mehran@mail.com',
-            'password'=> 'Moorche64',
-            'avatar'=> 'avatar',
-        ]);
+        return $response->withStatus(403)->withJson(["message" => "email or password is not valid"]);
 
-        return $this->view->render($response, "home.twig");
-    }
-
-    public function registerForm ($request, $response) {
-        return $this->view->render($response, "auth/register.twig");
     }
 
     public function register ($request, $response) {
 
+        $user = User::where('email', $request->getParam('email'))->first();
+        // return $response->withStatus(400)->withJson($user);
+        if($user){
+            return $response->withStatus(400)->withJson(["message" => "email is already taken"]);
+        }
         User::create([
             'name'=> $request->getParam('name'), 
             'email'=>  $request->getParam('email'), 
             'password'=>  password_hash($request->getParam('password'), PASSWORD_DEFAULT),
         ]);
 
-        return $response->withRedirect($this->router->pathFor('homePage'));
+        return $response->withStatus(200)->withJson(["message" => "Successful"]);
     }
 
 

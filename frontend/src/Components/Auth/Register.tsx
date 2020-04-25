@@ -20,7 +20,7 @@ const Register: React.FC<IProps> = (props: IProps) => {
         <form onSubmit={submitHandler}>
             <label htmlFor="fullName">Full Name</label>
             {getFormItem({
-                name: "fullName",
+                name: "name",
                 rules:[{
                     required: true,
                     msg: "filed must fill"

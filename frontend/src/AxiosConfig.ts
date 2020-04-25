@@ -17,16 +17,20 @@ AxiosInstance.interceptors.request.use(
       return config;
   },
   error => {
+    console.log("error")
       return Promise.reject(error);
   });
 
 AxiosInstance.interceptors.response.use(
     (response) => response,
   (error) => {
-    if (error.response.status === 401) {
+    if (error.response) {
+      if (error.response.status === 401) {
       logOut()
     }
-    return Promise.reject(error);;
+  }
+    console.log("response error")
+    return Promise.reject(error);
   }
 )
 

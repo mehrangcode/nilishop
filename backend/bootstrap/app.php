@@ -26,11 +26,6 @@ $capsule->bootEloquent();
 $container['db'] = function($container) use ($capsule) {
     return $capsule;
 };
-$app->add(new Tuupola\Middleware\JwtAuthentication([
-    "path" => "/api", /* or ["/api", "/admin"] */
-    "ignore" => ["/api/token", "/admin/ping"],
-    "secret" => "MEHRANGANJI"
-]));
 $app->options('/{routes:.+}', function ($request, $response, $args) {
     return $response;
 });
@@ -38,10 +33,22 @@ $app->options('/{routes:.+}', function ($request, $response, $args) {
 $app->add(function ($req, $res, $next) {
     $response = $next($req, $res);
     return $response
-            ->withHeader('Access-Control-Allow-Origin', '*')
+            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
             ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 });
+
+$app->add(new Tuupola\Middleware\JwtAuthentication([
+    "path" => "/api", /* or ["/api", "/admin"] */
+    "ignore" => [
+        "/api/users/register", 
+        "/api/users/login", 
+        "/admin/ping"],
+    "secret" => "MEHRANGANJI"
+]));
+
+
+
 require __DIR__ . "/controller.php";
 require __DIR__ . "/../app/routes/api/v1/api.php";
 require __DIR__ . "/../app/routes/web.php";
