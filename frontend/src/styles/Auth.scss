@@ -1,0 +1,13 @@
+.authPanel {
+	display: flex;
+	justify-content: space-around;
+}
+.LoginPanel {
+	flex-basis: 50%;
+	border-left: 1px solid #ccc;
+	padding-left: 20px;
+	box-sizing: border-box;
+}
+.RegisterPanel {
+	flex-basis: 50%;
+}

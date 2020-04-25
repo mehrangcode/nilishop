@@ -1,0 +1,80 @@
+
+.modalContainer {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+    box-sizing: border-box;
+    overflow-y: auto;
+    z-index: 250;
+}
+.modalBg {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: #00000087;
+}
+.simpleModal {
+    background-color: white;
+    z-index: 5;
+    margin-top: 35px;
+    width: 650px;
+	max-width: 100%;
+	border-radius: 5px;
+    height: max-content;
+    opacity: 0;
+    overflow-x: hidden;
+    transform: rotateY(90deg);
+    transform: rotateZ(40deg);
+    transition: all 100ms;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .modalHeader{
+        background-color: $theme_light;
+        color: $dark_title;
+        padding: 10px 15px;
+    }
+
+    .modalBody {
+        padding: 15px;
+        color: black;
+    }
+    .modalFooter {
+        text-align: right;
+        padding: 20px;
+        background-color: $theme_light;
+        position: relative;
+        margin-top: 30px;
+    }
+}
+@mixin modalBtn($right, $bgColor, $color: $dark_title) {
+        position: absolute;
+        right: $right;
+        top: -30px;
+        background: $bgColor;
+        color: $color;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+
+}
+
+.confirmBtn {
+    @include modalBtn(10px, $theme_light);
+    box-shadow: 0 -2px 2px #666;
+}
+.cancelBtn {
+    @include modalBtn(70px, white);
+    box-shadow: 0 2px 2px #666;
+}
+.active {
+    transform: rotateY(0deg);
+    transform: rotateZ(0deg);
+    opacity: 1;
+}

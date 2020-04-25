@@ -1,0 +1,1 @@
+export {getPanelData} from "./action";

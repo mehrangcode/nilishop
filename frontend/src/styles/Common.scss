@@ -1,0 +1,18 @@
+.iconMenu {
+	height: 25px;
+	width: 30px;
+	cursor: pointer;
+}
+.palletHeader {
+	position: relative;
+	background-color: $header;
+	height: 40px;
+	color: $light_font;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 5px;
+}
+.blankBox {
+	height: 200px;
+}

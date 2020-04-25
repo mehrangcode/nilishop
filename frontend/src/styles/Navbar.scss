@@ -1,0 +1,34 @@
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	gap: 25px;
+	padding: 0 20px;
+	background-color: $header;
+    align-items: center;
+    color: $light_font;
+    .logo {
+        margin: 0;
+        a {
+            color: $light_font;
+            text-decoration: none;
+        }
+    }
+    .navMenu {
+        display: flex;
+        gap: 25px;
+        list-style: none
+    }
+
+    .navMenuItem {
+        cursor: pointer;
+        a {
+            color: $light_font;
+            text-decoration: none;
+        }
+    }
+
+    .navLogin {
+        cursor: pointer;
+        height: 25px;
+    }
+}

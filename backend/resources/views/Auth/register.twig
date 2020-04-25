@@ -1,0 +1,32 @@
+{% extends 'template/app.twig' %}
+
+
+
+        {% block content %} 
+
+        <div class="registerForm">
+            <h1>
+                Regiter
+            </h1>
+            <div class="FormContainer">
+                <form action="{{path_for('auth.register')}}" method="post">
+                
+                    <div class="formControl">
+                        <label for="yourName">your Name</label>
+                        <input type="text" id="yourName" name="name">
+                    </div>
+                    <div class="formControl">
+                        <label for="email">email</label>
+                        <input type="text" id="email" name="email">
+                    </div>
+                    <div class="formControl">
+                        <label for="password">password</label>
+                        <input type="text" id="password" name="password">
+                    </div>
+                    <div class="formControl">
+                        <button type="submit">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endblock %}

@@ -1,0 +1,25 @@
+.calendarPage {
+    display: grid;
+    // grid-template-areas: 
+    // 'farvardin ordibehesht tir tir mehr aban day day'
+    // 'farvardin ordibehesht mordad sharivar mehr aban bah esf'
+    // 'khordad khordad mordad sharivar aza aza bah esf';
+    grid-template-columns: repeat(8, 3fr);
+    grid-template-rows: repeat(3, 300px);
+
+    div {
+        border: 1px solid;
+    }
+}
+// .monthPanel1 { grid-area: farvardin; }
+// .monthPanel2 { grid-area: ordibehesht; }
+// .monthPanel3 { grid-area: khordad; }
+// .monthPanel4 { grid-area: tir; }
+// .monthPanel5 { grid-area: mordad; }
+// .monthPanel6 { grid-area: sharivar; }
+// .monthPanel7 { grid-area: mehr; }
+// .monthPanel8 { grid-area: aban; }
+// .monthPanelaza { grid-area: aza; }
+// .monthPanel10 { grid-area: day; }
+// .monthPanel11 { grid-area: bah; }
+// .monthPanel12 { grid-area: esf; }
