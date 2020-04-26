@@ -47,7 +47,6 @@ export const AuthActions = {
             //loagin perosses faild
             dispatch({type: AuthActionTypes.LoginFail})
                 EModal(error)
-            console.log(error)
         }
         
     },

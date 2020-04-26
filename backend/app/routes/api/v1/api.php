@@ -16,3 +16,7 @@ $app->get('/api/users/login', function ($request, $response, $args) {
     return $response->withStatus(500)->withJson($data);
 });
 
+//Products
+$app->get('/api/products', "ProductController:index");
+$app->post('/api/products', "ProductController:create");
+$app->put('/api/products/{productId}', "ProductController:create");

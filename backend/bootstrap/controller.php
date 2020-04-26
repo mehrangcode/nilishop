@@ -20,3 +20,6 @@ $container['HomeController'] = function($container) {
 $container['UserController'] = function($container) {
     return new \App\Controllers\UserController($container);
 };
+$container['ProductController'] = function($container) {
+    return new \App\Controllers\ProductController($container);
+};

@@ -10,14 +10,12 @@ let AxiosInstance = Axios.create({
 AxiosInstance.interceptors.request.use(
   config => {
       const token = window.localStorage.getItem('Nili');
-      console.log("axios")
       if (token) {
         config.headers['Authorization'] = token;
       }
       return config;
   },
   error => {
-    console.log("error")
       return Promise.reject(error);
   });
 
@@ -29,7 +27,6 @@ AxiosInstance.interceptors.response.use(
       logOut()
     }
   }
-    console.log("response error")
     return Promise.reject(error);
   }
 )
