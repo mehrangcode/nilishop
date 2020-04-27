@@ -2,6 +2,8 @@
 $app->get('/api', function ($request, $response, $args) {
     return $response->withStatus(200)->write('Hello From API!');
 });
+
+//User Controller
 $app->get('/api/test', "UserController:get_user_data");
 
 $app->get('/api/token', "UserController:token");

@@ -16,7 +16,7 @@ class UserController extends Controller
 		$future = date('Y-m-d H:i:s', mktime(date('H') + 2, date('i'), date('s'), date('m'), date('d'), date('Y')));
 
 		$token = array(
-			'header' => [ 			// User Information
+			'context' => [ 			// User Information
 				'id' 	=> 	$id, 	// User id
 				'user' 	=> 	$user 	// username
 			],
@@ -32,23 +32,18 @@ class UserController extends Controller
 
     public function get_user_data($request, $response) {
         $decoded = $request->getAttribute("jwt");
-        return $response->withStatus(500)->withJson($decoded);
+        return $response->withStatus(200)->withJson($decoded);
+        // return $response->withStatus(200)->withJson( $decoded['context']->id);
     }
-
-
-    public function token($request, $response) {
-        $token = $this->getToken(1, "mehran");
-        $data = array('token' => $token);
-        return $response->withStatus(200)->withJson($data);
-    }
-
     public function login($request, $response) {
         $user = User::where('email', $request->getParam('email'))->first();
-        // return $response->withStatus(400)->withJson($user);
         if($user){
-            $token = $this->getToken($user->id, $user->name);
-            $data = array('token' => $token);
-            return $response->withStatus(200)->withJson($data);
+            if(password_verify($request->getParam('password') , $user->password ))
+            {
+                $token = $this->getToken($user->id, $user->name);
+                $data = array('token' => $token, 'user' => $user);
+                return $response->withStatus(200)->withJson($data);
+            }
         }
 
         return $response->withStatus(403)->withJson(["message" => "email or password is not valid"]);
@@ -58,7 +53,6 @@ class UserController extends Controller
     public function register ($request, $response) {
 
         $user = User::where('email', $request->getParam('email'))->first();
-        // return $response->withStatus(400)->withJson($user);
         if($user){
             return $response->withStatus(400)->withJson(["message" => "email is already taken"]);
         }
