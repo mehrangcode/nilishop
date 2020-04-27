@@ -9,7 +9,14 @@ class ProductController extends Controller
 
     public function index ($request, $response) {
         $data = Product::all();
-        return $response->withStatus(200)->withJson(["data" => $data]);
+        return $response->withStatus(200)->withJson($data);
+    }
+    public function findOne ($request, $response, $productId) {
+        $data = Product::where('id', $productId)->first();
+        if(!$data){
+            return $response->withStatus(400)->withJson(["message" => "product not found"]);
+         }
+        return $response->withStatus(200)->withJson($data);
     }
     public function create ($request, $response) {
         Product::create([
@@ -23,7 +30,7 @@ class ProductController extends Controller
     }
 
     public function update ($request, $response, $productId) {
-            $product = App\Product::where('id', $productId)->first();
+            $product = Product::where('id', $productId)->first();
             if(!$product){
                 return $response->withStatus(400)->withJson(["message" => "product not found"]);
             };
@@ -31,8 +38,16 @@ class ProductController extends Controller
             $product->lead = $request->getParam('lead'); 
             $product->content = $request->getParam('content'); 
             $product->price = $request->getParam('price');
-            $product->refresh();
+            $product->save();
         return $response->withStatus(200)->withJson(["message" => "Product was updated Successful"]);
+    }
+    public function delete ($request, $response, $productId) {
+            $product = Product::where('id', $productId)->first();
+            if(!$product){
+                return $response->withStatus(400)->withJson(["message" => "product not found"]);
+            };
+            $product->delete();
+        return $response->withStatus(200)->withJson(["message" => "Product was deleted Successful"]);
     }
 
 
