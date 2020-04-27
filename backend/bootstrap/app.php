@@ -39,6 +39,7 @@ $app->add(function ($req, $res, $next) {
 });
 
 $app->add(new Tuupola\Middleware\JwtAuthentication([
+    "attribute" => "jwt",
     "path" => "/api", /* or ["/api", "/admin"] */
     "ignore" => [
         "/api/users/register", 

@@ -30,6 +30,12 @@ class UserController extends Controller
 		return JWT::encode($token, $secret, "HS256");
 	}
 
+    public function get_user_data($request, $response) {
+        $decoded = $request->getAttribute("jwt");
+        return $response->withStatus(500)->withJson($decoded);
+    }
+
+
     public function token($request, $response) {
         $token = $this->getToken(1, "mehran");
         $data = array('token' => $token);
@@ -63,6 +69,20 @@ class UserController extends Controller
         ]);
 
         return $response->withStatus(200)->withJson(["message" => "Successful"]);
+    }
+
+
+    public function decodeToken($token)
+    {
+        try {
+            return JWT::decode(
+                $token,
+                $this->_jwtKey,
+                (array) $this->algorithm
+            );
+        } catch (\Exception $exception) {
+            return false;
+        }
     }
 
 
