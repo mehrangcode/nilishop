@@ -38,18 +38,25 @@ class UserController extends Controller
         // return $response->withStatus(200)->withJson( $decoded['context']->id);
     }
     public function login($request, $response) {
-        $user = User::with('roles:title')->where('email', $request->getParam('email'))->first();
+        $user = User::with('roles')->where('email', $request->getParam('email'))->first();
         if($user){
             if(password_verify($request->getParam('password') , $user->password ))
             {
+                $user_permissions = array();
                 $roles = array();
                 foreach ($user->roles as $role) {
+                    if($role->permissions){
+                        foreach ($role->permissions as $permission) {
+                            $user_permissions[] = $permission->id;
+                        }
+                    }
                     $roles[] = $role->title;
                 };
             $data = array(
                 'id'=> $user->id,
                 'name' => $user->name,
-                'roles' => $roles
+                'roles' => $roles,
+                'permissions' =>  array_unique($user_permissions)
             );
             
                 $token = $this->getToken($data);
