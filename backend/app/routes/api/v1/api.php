@@ -12,6 +12,7 @@ $app->post('/api/users/login', "UserController:login");
 
 //Products
 $app->get('/api/products', "ProductController:index");
+$app->get('/api/products/getProductsWithCategory', "ProductController:getProductsWithCategory");
 $app->get('/api/products/{productId}', "ProductController:findOne");
 $app->post('/api/products', "ProductController:create");
 $app->put('/api/products/{productId}', "ProductController:update");

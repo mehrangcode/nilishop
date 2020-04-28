@@ -55,6 +55,19 @@ class ProductController extends Controller
             $product->delete();
         return $response->withStatus(200)->withJson(["message" => "Product was deleted Successful"]);
     }
+    public function getProductsWithCategory ($request, $response) {
+            // $product = Product::where('id', $productId)->first();//->category;
+            $products = Product::with("category:id,title")->get(); 
+            if(!$products){
+                return $response->withStatus(400)->withJson(["message" => "product not found"]);
+            };
+            
+            $data = array();
+            foreach ($products as $product) {
+                $data[] = $product;
+            }
+        return $response->withStatus(200)->withJson($data);
+    }
 
 
 }
