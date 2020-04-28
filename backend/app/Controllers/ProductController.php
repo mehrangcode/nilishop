@@ -6,6 +6,10 @@ use \App\Models\Product;
 class ProductController extends Controller
 {
 
+    public function creatorId($request) {
+        $token = $request->getAttribute("jwt");
+        return $token['context']->id;
+    }
 
     public function index ($request, $response) {
         $data = Product::all();
@@ -22,9 +26,10 @@ class ProductController extends Controller
         Product::create([
             'title'=> $request->getParam('title'), 
             'lead'=> $request->getParam('lead'), 
-            'content'=> $request->getParam('content'), 
+            'content'=> $request->getParam('content'),
+            'category_id' => $request->getParam('category_id') ? $request->getParam('category_id') : 1,
             'price'=> $request->getParam('price'),
-            'creatorId' => 1
+            'user_id' => $this->creatorId($request)
         ]);
         return $response->withStatus(200)->withJson(["message" => "Create Product Successful"]);
     }
@@ -36,7 +41,8 @@ class ProductController extends Controller
             };
             $product->title = $request->getParam('title'); 
             $product->lead = $request->getParam('lead'); 
-            $product->content = $request->getParam('content'); 
+            $product->content = $request->getParam('content');
+            $product->category_id = $request->getParam('category_id') ? $request->getParam('category_id') : 1; 
             $product->price = $request->getParam('price');
             $product->save();
         return $response->withStatus(200)->withJson(["message" => "Product was updated Successful"]);

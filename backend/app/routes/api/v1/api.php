@@ -16,3 +16,11 @@ $app->get('/api/products/{productId}', "ProductController:findOne");
 $app->post('/api/products', "ProductController:create");
 $app->put('/api/products/{productId}', "ProductController:update");
 $app->delete('/api/products/{productId}', "ProductController:delete");
+
+//category
+$app->get('/api/category', "CategoryController:index");
+$app->get('/api/category/{categoryId}', "CategoryController:findOne");
+$app->get('/api/category/{categoryId}/products', "CategoryController:get_Category_Products");
+$app->post('/api/category', "CategoryController:create");
+$app->put('/api/category/{categoryId}', "CategoryController:update");
+$app->delete('/api/category/{categoryId}', "CategoryController:delete");

@@ -12,6 +12,12 @@ class Product extends Model
         'lead',
         'content',
         'price',
-        'creatorId'
+        'category_id',
+        'user_id'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

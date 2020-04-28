@@ -23,3 +23,6 @@ $container['UserController'] = function($container) {
 $container['ProductController'] = function($container) {
     return new \App\Controllers\ProductController($container);
 };
+$container['CategoryController'] = function($container) {
+    return new \App\Controllers\CategoryController($container);
+};
