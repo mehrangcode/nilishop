@@ -29,3 +29,6 @@ $container['CategoryController'] = function($container) {
 $container['RoleController'] = function($container) {
     return new \App\Controllers\RoleController($container);
 };
+$container['PermissionController'] = function($container) {
+    return new \App\Controllers\PermissionController($container);
+};

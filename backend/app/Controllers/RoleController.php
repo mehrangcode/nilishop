@@ -57,6 +57,19 @@ class RoleController extends Controller
         return $response->withStatus(200)->withJson(["message" => "role was deleted Successful"]);
     }
 
+    public function setPermissionsToRole($request, $response, $roleId){
+        $permissions = $request->getParam('permissions');
+       $role = Role::find($roleId)->first();
+       $role->addPermissionsToRole($permissions);
+       $role->with('permissions');
+        return $response->withStatus(200)->withJson(["message" => $role]);
+    }
+
+    public function getRolePermissions($request, $response, $roleId){
+       $role = Role::with('permissions:title')->where('id', $roleId)->get();
+        return $response->withStatus(200)->withJson(["message" => $role]);
+
+    }
 
 
 }

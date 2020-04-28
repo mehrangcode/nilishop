@@ -17,6 +17,15 @@ $app->get('/api/role/{roleId}', "RoleController:findOne");
 $app->post('/api/role', "RoleController:create");
 $app->put('/api/role/{roleId}', "RoleController:update");
 $app->delete('/api/role/{roleId}', "RoleController:delete");
+$app->get('/api/role/{roleId}/Permissions', "RoleController:getRolePermissions");
+$app->put('/api/role/{roleId}/Permissions', "RoleController:setPermissionsToRole");
+
+//Permission
+$app->get('/api/permission', "PermissionController:index");
+$app->get('/api/permission/{permissionId}', "PermissionController:findOne");
+$app->post('/api/permission', "PermissionController:create");
+$app->put('/api/permission/{permissionId}', "PermissionController:update");
+$app->delete('/api/permission/{permissionId}', "PermissionController:delete");
 
 //userRole
 $app->post('/api/setRolesTo/{userId}', "UserController:setRolesToUser");
