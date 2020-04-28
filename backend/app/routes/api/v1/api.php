@@ -7,8 +7,19 @@ $app->get('/api', function ($request, $response, $args) {
 $app->get('/api/test', "UserController:get_user_data");
 
 $app->get('/api/token', "UserController:token");
+$app->get('/api/users', "UserController:index");
 $app->post('/api/users/register', "UserController:register");
 $app->post('/api/users/login', "UserController:login");
+
+//Role
+$app->get('/api/role', "RoleController:index");
+$app->get('/api/role/{roleId}', "RoleController:findOne");
+$app->post('/api/role', "RoleController:create");
+$app->put('/api/role/{roleId}', "RoleController:update");
+$app->delete('/api/role/{roleId}', "RoleController:delete");
+
+//userRole
+$app->post('/api/setRolesTo/{userId}', "UserController:setRolesToUser");
 
 //Products
 $app->get('/api/products', "ProductController:index");

@@ -6,7 +6,7 @@ use \Firebase\JWT\JWT;
 class UserController extends Controller
 {
 
-    public static function getToken($id, $user)
+    public static function getToken($user)
 	{
 		$secret = "MEHRANGANJI";
 
@@ -16,10 +16,7 @@ class UserController extends Controller
 		$future = date('Y-m-d H:i:s', mktime(date('H') + 2, date('i'), date('s'), date('m'), date('d'), date('Y')));
 
 		$token = array(
-			'context' => [ 			// User Information
-				'id' 	=> 	$id, 	// User id
-				'user' 	=> 	$user 	// username
-			],
+			'context' => $user,
 			'payload' => [
 				'iat'	=>	$now, 	// Start time of the token
 				'exp'	=>	$future	// Time the token expires (+2 hours)
@@ -30,18 +27,33 @@ class UserController extends Controller
 		return JWT::encode($token, $secret, "HS256");
 	}
 
+    public function index($request, $response) {
+        $users = User::all();
+        return $response->withStatus(200)->withJson($users);
+        // return $response->withStatus(200)->withJson( $decoded['context']->id);
+    }
     public function get_user_data($request, $response) {
         $decoded = $request->getAttribute("jwt");
         return $response->withStatus(200)->withJson($decoded);
         // return $response->withStatus(200)->withJson( $decoded['context']->id);
     }
     public function login($request, $response) {
-        $user = User::where('email', $request->getParam('email'))->first();
+        $user = User::with('roles:title')->where('email', $request->getParam('email'))->first();
         if($user){
             if(password_verify($request->getParam('password') , $user->password ))
             {
-                $token = $this->getToken($user->id, $user->name);
-                $data = array('token' => $token, 'user' => $user);
+                $roles = array();
+                foreach ($user->roles as $role) {
+                    $roles[] = $role->title;
+                };
+            $data = array(
+                'id'=> $user->id,
+                'name' => $user->name,
+                'roles' => $roles
+            );
+            
+                $token = $this->getToken($data);
+                $data = array('token' => $token, 'user' => $data);
                 return $response->withStatus(200)->withJson($data);
             }
         }
@@ -79,5 +91,19 @@ class UserController extends Controller
         }
     }
 
+    public function setRolesToUser($request, $response, $userId){
+        $roles = $request->getParam('roles');
+       $user = User::find($userId)->first();
+       $user->assignRole($roles);
+       $user->with('roles');
+        return $response->withStatus(200)->withJson(["message" => $user]);
 
+    }
+
+    public function getRolesToUser($request, $response, $userId){
+        $roles = $request->getParam('roles');
+       $user = User::with('roles:title')->where('id', $userId)->get();
+        return $response->withStatus(200)->withJson(["message" => $user]);
+
+    }
 }
