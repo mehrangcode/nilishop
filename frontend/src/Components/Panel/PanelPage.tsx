@@ -5,20 +5,24 @@ import * as PanelActions from '../../actions/Panel/index';
 import { IPanelState } from '../../actions/Panel/model';
 import { IFormProps } from "../../Utils/FormController";
 import { Sidebar } from './SideBar';
-type IProps = IPanelState & typeof PanelActions & IFormProps
+import { Switch, Route } from 'react-router-dom';
+import { IAuthState } from '../../actions/Auth/model';
+import ProductsList from '../Products/List';
+type IProps = {
+    panel: IPanelState,
+    auth: IAuthState
+} & typeof PanelActions & IFormProps
 const PanelPage: React.FC<IProps> = (props: IProps) => {
-    React.useEffect(() => {
-        props.getPanelData()
-    }, [])
-    const { data } = props.panelData;
     return (
         <div className="container">
-           <div className="content"></div>
+           <div className="content">
+           <Switch>
+                <Route path="/adminPanel/products" component={ProductsList} />
+                <Route path="/adminPanel" render = {() => <p>Dashboard</p>} />
+            </Switch>
+           </div>
            <Sidebar />
         </div>
     )
 }
-export default connect(
-    (state: IApplicationState) => state.panel,
-    PanelActions,
-)(PanelPage);
+export default PanelPage;

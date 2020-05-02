@@ -11,6 +11,9 @@
 	width: 100%;
 	box-sizing: border-box;
 }
+.content {
+	flex-grow: 1;
+}
 .notebookList,
 .taskList,
 .customNoteList {

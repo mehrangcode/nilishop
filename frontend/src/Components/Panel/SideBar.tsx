@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export const Sidebar = () => {
-
+    const [showMenu, toggleMenu] = useState<boolean>(false)
+    let sidebarClassName = "Sidebar"
+    if(showMenu) {
+        sidebarClassName = "Sidebar sidebarActive"
+    }
     return (
-        <div className="Sidebar">
-            <div className="sidebarBlock">
-                <h3 className="sidebarBlockTitle">Products</h3>
-                <div className="sidebarBlockItems">
-                    <Link className="sidebarItem" to="/productCreate">Create Product</Link>
+        <React.Fragment>
+            <div className="SidebarFab" onClick={() => toggleMenu(!showMenu)}>
+                +
+            </div>
+            <div className={sidebarClassName}>
+                <div className="sidebarBlock">
+                    <h3 className="sidebarBlockTitle">Products</h3>
+                    <div className="sidebarBlockItems">
+                        <Link className="sidebarItem" to="/adminPanel/products">Products list</Link>
+                        <Link className="sidebarItem" to="/adminPanel/products/Create">Create Product</Link>
+                    </div>
+                </div>
+                <div className="sidebarBlock">
+                    <h3 className="sidebarBlockTitle">Categories</h3>
+                    <div className="sidebarBlockItems">
+                        <Link className="sidebarItem" to="/categories">Categories list</Link>
+                        <Link className="sidebarItem" to="/categories/Create">Create Category</Link>
+                    </div>
                 </div>
             </div>
-        </div>
+        </React.Fragment>
     )
 }

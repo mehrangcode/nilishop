@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { IApplicationState } from '../../store/state';
 import PanelPage from '../Panel/PanelPage';
 import CalendarPage from '../Calendar/CalendarPage';
+import ProductsList from '../Products/List';
 
 
 
@@ -19,6 +20,9 @@ const LayoutManager: React.FC<IProps> = (props: IProps) => {
         <React.Fragment>
             <Navbar {...props} />
             <Switch>
+                {props.isAuth ? (
+                <Route path="/products" component={ProductsList} />
+                    ) : null}
                 {props.isAuth ? (
                 <Route path="/adminPanel" component={PanelPage} />
                     ) : null}

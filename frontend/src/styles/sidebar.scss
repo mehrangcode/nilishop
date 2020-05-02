@@ -1,17 +1,80 @@
 .Sidebar {
-	width: 250px;
+    width: 0;
+    opacity: 1;
 	background-color: #2a2a2a;
 	border: 1px solid;
 	color: white;
-	padding: 5px;
-	box-sizing: border-box;
-	position: absolute;
-	right: -300px;
+    box-sizing: border-box;
+    overflow-x: hidden;
 	transition: all 250ms;
 }
 
 .Sidebar a {
-    color: lightcoral;
-    font-weight: bold;
+	color: white;
+	font-weight: bold;
+	margin: 10px 0;
+	text-decoration: none;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
+.SidebarFab {
+	border: 3px solid #b02929;
+	background-color: lightcoral;
+	width: 60px;
+	height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	position: fixed;
+	bottom: 50px;
+	right: 30px;
+	font-size: 30px;
+	cursor: pointer;
+}
+
+.Sidebar.sidebarActive {
+    width: 250px;
+    opacity: 1;
+    overflow-x: visible;
+}
+
+.sidebarBlock {
+	position: relative;
+}
+.sidebarBlockTitle {
+	height: 50px;
+	background-color: white;
+	color: black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 5px;
+	cursor: pointer;
+}
+.sidebarBlockItems {
+	position: absolute;
+	right: 100%;
+	width: 200px;
+	background-color: #2a2a2a;
+	min-height: 100px;
+	top: 0;
+	text-align: center;
+	padding: 5px;
+    box-sizing: border-box;
+	display: none;
+	border-radius: 20px 0 0 20px;
+}
+
+.sidebarItem:hover {
+	background-color: white;
+	color: black;
+	border-radius: 10px 0 0 10px;
+}
+
+.sidebarBlock:hover .sidebarBlockItems {
+    display: block;
 }
