@@ -1,1 +1,5 @@
 declare module 'react-text-mask'
+declare module 'react-draft-wysiwyg'
+declare module 'draft-js'
+declare module 'html-to-draftjs'
+declare module 'draftjs-to-html'

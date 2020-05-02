@@ -35,7 +35,6 @@ const ProductsList = (props: IProps) => {
                 <Column dataName="content" title="Content" />
                 <Column dataName="price" title="Price" />
                 <Column title="action" render={goToUpdateProduct}/>
-                <p>dd</p>
             </Table>
         </>
     )

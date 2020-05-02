@@ -19,6 +19,7 @@ $config = [
 $app = new \Slim\App($config);
 $container = $app->getContainer();
 
+$container['upload_directory'] = __DIR__ . '../uploads';
 $capsule = new \Illuminate\Database\Capsule\Manager;
 $capsule->addConnection($container['settings']['db']);
 $capsule->setAsGlobal();

@@ -8,6 +8,7 @@ import { Sidebar } from './SideBar';
 import { Switch, Route } from 'react-router-dom';
 import { IAuthState } from '../../actions/Auth/model';
 import ProductsList from '../Products/List';
+import CreateProducts from '../Products/Create';
 type IProps = {
     panel: IPanelState,
     auth: IAuthState
@@ -17,6 +18,7 @@ const PanelPage: React.FC<IProps> = (props: IProps) => {
         <div className="container">
            <div className="content">
            <Switch>
+                <Route path="/adminPanel/products/Create" component={CreateProducts} />
                 <Route path="/adminPanel/products" component={ProductsList} />
                 <Route path="/adminPanel" render = {() => <p>Dashboard</p>} />
             </Switch>

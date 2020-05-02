@@ -48,6 +48,33 @@ export const ProductReducer: Reducer<IProductState> = (
                 },
             } as IProductState;
         }
+        case PanelActionTypes.CreateProduct: {
+            return {
+                ...state,
+                itemCRUD: {
+                    ...state.itemCRUD,
+                    loading: "Create"
+                },
+            } as IProductState;
+        }
+        case PanelActionTypes.CreateProductSuccess: {
+            return {
+                ...state,
+                itemCRUD: {
+                    ...state.itemCRUD,
+                    loading: ""
+                },
+            } as IProductState;
+        }
+        case PanelActionTypes.CreateProductFail: {
+            return {
+                ...state,
+                itemCRUD: {
+                    ...state.itemCRUD,
+                    loading: ""
+                },
+            } as IProductState;
+        }
         case PanelActionTypes.DeleteProduct: {
             return {
                 ...state,

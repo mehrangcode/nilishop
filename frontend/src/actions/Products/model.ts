@@ -23,6 +23,16 @@ interface IGetProductsListFail extends Action<string> {
     type: PanelActionTypes.GetProductsListFail
 }
 
+interface ICreateProduct extends Action<string> {
+    type: PanelActionTypes.CreateProduct
+}
+interface ICreateProductSuccess extends Action<string> {
+    type: PanelActionTypes.CreateProductSuccess
+}
+interface ICreateProductFail extends Action<string> {
+    type: PanelActionTypes.CreateProductFail
+}
+
 interface IDeleteProduct extends Action<string> {
     type: PanelActionTypes.DeleteProduct
 }
@@ -40,6 +50,9 @@ interface IDeleteProductFail extends Action<string> {
 export type ActionModel = IGetProductsList
     | IGetProductsListSuccess
     | IGetProductsListFail
+    | ICreateProduct
+    | ICreateProductSuccess
+    | ICreateProductFail
     | IDeleteProduct
     | IDeleteProductSuccess
     | IDeleteProductFail
