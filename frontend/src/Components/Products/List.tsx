@@ -26,13 +26,18 @@ const ProductsList = (props: IProps) => {
         </Button>
         </div>
     }
+    const renderContent = (record: any) => {
+        
+       return <div dangerouslySetInnerHTML={{ __html: record.content }} />
+    }
     return (
         <>
             <h1>Products</h1>
             <Table data={props.products.data} loading={props.itemCRUD.loading === "Delete" || props.products.loading} >
                 <Column dataName="title" title="Title" />
                 <Column dataName="lead" title="Lead" />
-                <Column dataName="content" title="Content" />
+                {/* <Column title="Content" render ={renderContent}/> */}
+                <Column dataName="content" title="Content"/>
                 <Column dataName="price" title="Price" />
                 <Column title="action" render={goToUpdateProduct}/>
             </Table>
