@@ -16,7 +16,7 @@ import CalendarPage from '../Calendar/CalendarPage';
 type IProps = typeof AuthActions & IAuthState & IFormProps & RouteComponentProps
 const LayoutManager: React.FC<IProps> = (props: IProps) => {
     return (
-        <div className="App">
+        <React.Fragment>
             <Navbar {...props} />
             <Switch>
                 {props.isAuth ? (
@@ -30,7 +30,7 @@ const LayoutManager: React.FC<IProps> = (props: IProps) => {
                     ) : <Route path="/about" component={AboutPage} />}
                 <Route path="/" component={Home} />
             </Switch>
-        </div>
+        </React.Fragment>
     )
 }
 
