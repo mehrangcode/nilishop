@@ -39,8 +39,8 @@ export const AuthActions = {
             if(res.data){
                 //login was succeed
                 //save token on loacalStorage
-                window.localStorage.setItem("Nili", res.data.token);
-                axios.defaults.headers.common['Authorization'] = `${res.data.token}` 
+                window.localStorage.setItem("Nili", `Bearer ${res.data.token}`);
+                axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}` 
                 dispatch({type: AuthActionTypes.LoginSuccess})
             }
         } catch (error) {
