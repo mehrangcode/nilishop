@@ -1,0 +1,17 @@
+.Sidebar {
+	width: 250px;
+	background-color: #2a2a2a;
+	border: 1px solid;
+	color: white;
+	padding: 5px;
+	box-sizing: border-box;
+	position: absolute;
+	right: -300px;
+	transition: all 250ms;
+}
+
+.Sidebar a {
+    color: lightcoral;
+    font-weight: bold;
+
+}
