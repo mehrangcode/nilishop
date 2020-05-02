@@ -11,7 +11,7 @@ interface Iprops {
 const Button = (props: Iprops) => {
     let type: any = "button"
     const isDisabled = props.disabled || props.loading
-    let btnClass =  `btn ${props.className ? props.className : ""}`
+    let btnClass =  `btn${props.className ? " "+ props.className : ""}`
     if(props.type){
         type = props.type
     }

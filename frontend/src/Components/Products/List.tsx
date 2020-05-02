@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { IProductState } from "../../actions/Products/model";
 import * as ProductActions from "../../actions/Products";
 import { Table, Column } from "../../Utils/Table";
+import Button from "../../Utils/Buttons/Button";
 
 type IProps = IProductState & typeof ProductActions;
 const ProductsList = (props: IProps) => {
@@ -12,16 +13,23 @@ const ProductsList = (props: IProps) => {
         props.getProducts()
     }, [])
     const goToUpdateProduct = (record: any) => {
-        return <button onClick={() => {
+        return <div>
+            <button onClick={() => {
             console.log(record.title)
         }}>
             Update
         </button>
+        <Button onClick={() => {
+            props.deleteProducts(record.id)
+        }}>
+            Delete
+        </Button>
+        </div>
     }
     return (
         <>
             <h1>Products</h1>
-            <Table data={props.products.data} >
+            <Table data={props.products.data} loading={props.itemCRUD.loading === "Delete" || props.products.loading} >
                 <Column dataName="title" title="Title" />
                 <Column dataName="lead" title="Lead" />
                 <Column dataName="content" title="Content" />

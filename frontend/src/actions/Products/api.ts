@@ -6,5 +6,8 @@ export const PanelApi = {
     getProducts : async () => {
         return axios.get(PanelUrl+ "/products")
     },
+    deleteProducts : async (productId: string) => {
+        return axios.delete(PanelUrl+ "/products/"+productId)
+    },
     
 }

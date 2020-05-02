@@ -4,7 +4,7 @@ import {PanelActionTypes} from './actionType';
 export interface IProductState {
     products: {
         loading: boolean;
-        data: any;
+        data: any[];
     }
     itemCRUD: {
         loading: string;
@@ -23,6 +23,16 @@ interface IGetProductsListFail extends Action<string> {
     type: PanelActionTypes.GetProductsListFail
 }
 
+interface IDeleteProduct extends Action<string> {
+    type: PanelActionTypes.DeleteProduct
+}
+interface IDeleteProductSuccess extends Action<string> {
+    type: PanelActionTypes.DeleteProductSuccess
+}
+interface IDeleteProductFail extends Action<string> {
+    type: PanelActionTypes.DeleteProductFail
+}
+
 
 
 
@@ -30,3 +40,6 @@ interface IGetProductsListFail extends Action<string> {
 export type ActionModel = IGetProductsList
     | IGetProductsListSuccess
     | IGetProductsListFail
+    | IDeleteProduct
+    | IDeleteProductSuccess
+    | IDeleteProductFail

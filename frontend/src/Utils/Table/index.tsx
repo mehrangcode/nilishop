@@ -1,6 +1,8 @@
 import React from 'react';
+import Spinner from '../Spinner';
 
 interface IProps {
+    loading?: boolean;
     data: any[];
     children: any;
 }
@@ -11,6 +13,7 @@ export const Table = (props: IProps) => {
     }
     return (
         <table>
+            <Spinner loading={props.loading ? props.loading : false} />
             <thead>
                 <tr>
                     {React.Children.map(props.children, (child: any, index: number) => {

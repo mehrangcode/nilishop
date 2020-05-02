@@ -16,3 +16,14 @@
 .blankBox {
 	height: 200px;
 }
+
+.spinner {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: #ffffffb8;
+	z-index: 200;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

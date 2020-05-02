@@ -5,7 +5,7 @@ import { IProductState, ActionModel } from "./model";
 const unloadedState: IProductState = {
     products: {
         loading: false,
-        data: null
+        data: []
     },
     itemCRUD: {
         loading: "",
@@ -45,6 +45,33 @@ export const ProductReducer: Reducer<IProductState> = (
                 products: {
                     ...state.products,
                     loading: false
+                },
+            } as IProductState;
+        }
+        case PanelActionTypes.DeleteProduct: {
+            return {
+                ...state,
+                itemCRUD: {
+                    ...state.itemCRUD,
+                    loading: "Delete"
+                },
+            } as IProductState;
+        }
+        case PanelActionTypes.DeleteProductSuccess: {
+            return {
+                ...state,
+                itemCRUD: {
+                    ...state.itemCRUD,
+                    loading: ""
+                },
+            } as IProductState;
+        }
+        case PanelActionTypes.DeleteProductFail: {
+            return {
+                ...state,
+                itemCRUD: {
+                    ...state.itemCRUD,
+                    loading: ""
                 },
             } as IProductState;
         }
