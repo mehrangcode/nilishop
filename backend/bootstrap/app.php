@@ -43,8 +43,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     "path" => "/api", /* or ["/api", "/admin"] */
     "ignore" => [
         "/api/users/register", 
-        "/api/users/login", 
-        "/admin/ping"],
+        "/api/users/login"],
     "secret" => "MEHRANGANJI"
 ]));
 

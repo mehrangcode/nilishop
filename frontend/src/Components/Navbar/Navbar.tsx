@@ -43,7 +43,7 @@ const Navbar = (props: IProps) => {
             <h1 className="logo"><Link to="/" >NILI</Link></h1>
             <ul className="navMenu">
                 {props.isAuth ? (
-                    <li className="navMenuItem"><Link to="/Dashboard">Dashboard</Link></li>
+                    <li className="navMenuItem"><Link to="/adminPanel">Dashboard</Link></li>
                 ) : (
                         <li className="navMenuItem"><Link to="/">Home</Link></li>
                     )}

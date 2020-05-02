@@ -2,6 +2,7 @@ import { AppAction } from "../../store/state";
 import { PanelActionTypes } from "./actionType";
 import { ActionModel } from "./model";
 import { PanelApi } from "./api";
+import { EModal } from "../../Utils/Errors/Modal";
 
 // export const PanelActions = {
 
@@ -16,7 +17,7 @@ import { PanelApi } from "./api";
         } catch (error) {
             //loagin perosses faild
             dispatch({type: PanelActionTypes.GetPanelDataFail})
-            alert(error.response.data.message)
+            EModal(error)
         }
         
     }

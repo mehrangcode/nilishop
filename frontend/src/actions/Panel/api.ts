@@ -4,7 +4,7 @@ const PanelUrl = urlGeneral + urlVersion
 
 export const PanelApi = {
     getPanelData : async () => {
-        return axios.get(PanelUrl+ "/users/panel")
+        return axios.get(PanelUrl+ "/adminPanel")
     },
 
     // PRODUCTS API

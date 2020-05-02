@@ -32,3 +32,6 @@ $container['RoleController'] = function($container) {
 $container['PermissionController'] = function($container) {
     return new \App\Controllers\PermissionController($container);
 };
+$container['AdminPanelController'] = function($container) {
+    return new \App\Controllers\AdminPanelController($container);
+};

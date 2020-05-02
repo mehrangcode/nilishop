@@ -45,3 +45,7 @@ $app->get('/api/category/{categoryId}/products', "CategoryController:get_Categor
 $app->post('/api/category', "CategoryController:create");
 $app->put('/api/category/{categoryId}', "CategoryController:update");
 $app->delete('/api/category/{categoryId}', "CategoryController:delete");
+
+//Admin Panel
+
+$app->get('/api/adminPanel', "AdminPanelController:index");

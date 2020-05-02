@@ -22,6 +22,7 @@ AxiosInstance.interceptors.request.use(
 AxiosInstance.interceptors.response.use(
     (response) => response,
   (error) => {
+    console.log("RES: ", error)
     if (error.response) {
       if (error.response.status === 401) {
       logOut()

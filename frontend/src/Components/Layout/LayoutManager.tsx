@@ -15,20 +15,19 @@ import CalendarPage from '../Calendar/CalendarPage';
 
 type IProps = typeof AuthActions & IAuthState & IFormProps & RouteComponentProps
 const LayoutManager: React.FC<IProps> = (props: IProps) => {
-    const authCheck = (routh: any) => {
-        return props.isAuth ? routh : <Route path="/" component={Home} />
-    }
     return (
         <div className="App">
             <Navbar {...props} />
             <Switch>
+                {props.isAuth ? (
+                <Route path="/adminPanel" component={PanelPage} />
+                    ) : null}
                 {props.isAuth ? (
                 <Route path="/calendar" component={CalendarPage} />
                     ) : null}
                 {props.isAuth ? (
                 <Route path="/about" component={CalendarPage} />
                     ) : <Route path="/about" component={AboutPage} />}
-                {/* <Route path="/About" component={AboutPage} /> */}
                 <Route path="/" component={Home} />
             </Switch>
         </div>
