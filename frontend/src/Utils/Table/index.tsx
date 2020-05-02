@@ -15,15 +15,26 @@ export const Table = (props: IProps) => {
                 React.Children.map(props.children, (child: any) => {
                     if (child) {
                         if (child.type === Column) {
+                            
                             console.log("name: ", child.props.name)
                             return <div className="column">
                                 <p className="columnTitle">
                                     {child.props.title}
                                 </p>
                                 {props.data.map(item => {
-                                    return item[child.props.dataName] ? <p className="columnData">
-                                        {item[child.props.dataName]}
-                                    </p> : <p className="columnData"></p>
+                                    if(child.props.render){
+                                        return <p className="columnData">
+                                            {child.props.render(item)}
+                                        </p>
+                                    }
+                                    let itemStr = ""
+                                    if(item[child.props.dataName]) {
+                                        itemStr = item[child.props.dataName]
+                                        if(itemStr.length > 40){
+                                            itemStr = item[child.props.dataName].substring(0, 50) + "..."
+                                        }
+                                    }
+                                    return <p className="columnData"> {itemStr} </p>
                                 })}
                             </div>
                         }
