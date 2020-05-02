@@ -18,7 +18,15 @@ const ProductsList = (props: IProps) => {
             <Table data={props.products.data} >
                 <Column dataName="title" title="Title" />
                 <Column dataName="lead" title="Lead" />
-                <Column dataName="Content" title="Content" />
+                <Column dataName="content" title="Content" />
+                <Column title="action" render={(record: any) => {
+                    console.log("RECORD: ", record)
+                    return (
+                        <span style={{color: "red"}}>
+                            {record.title}
+                        </span>
+                    )
+                }}/>
                 <p>dd</p>
             </Table>
         </>
