@@ -11,30 +11,33 @@ export const Table = (props: IProps) => {
     }
     return (
         <table>
-            <tr>
-                    {React.Children.map(props.children, (child: any) => {
+            <thead>
+                <tr>
+                    {React.Children.map(props.children, (child: any, index: number) => {
                         if (child) {
                             if (child.type === Column) {
                                 console.log("name: ", child.props.name)
                                 return (
-                                    <th>
+                                    <th key={"key" + index}>
                                         {child.props.title}
                                     </th>)
                             }
                         }
                     })}</tr>
+            </thead>
+            <tbody>
             {props.data.map(item => {
-                return <tr>
+                return <tr key={"item"+item.id}>
                     {React.Children.map(props.children, (child: any) => {
                         if (child) {
                             if (child.type === Column) {
-                                if(child.props.render){
-                                    return <td> {child.props.render(item)} </td> 
+                                if (child.props.render) {
+                                    return <td> {child.props.render(item)} </td>
                                 }
                                 if (item[child.props.dataName]) {
                                     let str = item[child.props.dataName];
-                                    if(item[child.props.dataName].length > 60) {
-                                        str = item[child.props.dataName].substring(0, 60)+"..."
+                                    if (item[child.props.dataName].length > 60) {
+                                        str = item[child.props.dataName].substring(0, 60) + "..."
                                     }
                                     return <td> {str} </td>
                                 }
@@ -44,8 +47,9 @@ export const Table = (props: IProps) => {
                     })}
                 </tr>
             })}
+            </tbody>
         </table>
     )
 }
 
-export class Column extends React.Component<any, any>{}
+export class Column extends React.Component<any, any>{ }

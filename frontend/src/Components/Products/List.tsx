@@ -11,7 +11,13 @@ const ProductsList = (props: IProps) => {
     useEffect(() => {
         props.getProducts()
     }, [])
-    console.log("Products: ", props.products)
+    const goToUpdateProduct = (record: any) => {
+        return <button onClick={() => {
+            console.log(record.title)
+        }}>
+            Update
+        </button>
+    }
     return (
         <>
             <h1>Products</h1>
@@ -19,14 +25,8 @@ const ProductsList = (props: IProps) => {
                 <Column dataName="title" title="Title" />
                 <Column dataName="lead" title="Lead" />
                 <Column dataName="content" title="Content" />
-                <Column title="action" render={(record: any) => {
-                    console.log("RECORD: ", record)
-                    return (
-                        <span style={{color: "red"}}>
-                            {record.title}
-                        </span>
-                    )
-                }}/>
+                <Column dataName="price" title="Price" />
+                <Column title="action" render={goToUpdateProduct}/>
                 <p>dd</p>
             </Table>
         </>
