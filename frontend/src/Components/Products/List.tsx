@@ -39,7 +39,7 @@ const ProductsList = (props: IProps) => {
                 <Column dataName="title" title="Title" />
                 <Column dataName="lead" title="Lead" />
                 {/* <Column title="Content" render ={renderContent}/> */}
-                <Column dataName="content" title="Content"/>
+                <Column dataName="category.title" title="Category"/>
                 <Column dataName="price" title="Price" />
                 <Column title="action" render={goToUpdateProduct}/>
             </Table>

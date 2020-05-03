@@ -38,13 +38,26 @@ export const Table = (props: IProps) => {
                                 if (child.props.render) {
                                     return <td> {child.props.render(item)} </td>
                                 }
-                                if (item[child.props.dataName]) {
-                                    let str = item[child.props.dataName];
-                                    if (item[child.props.dataName].length > 60) {
-                                        str = item[child.props.dataName].substring(0, 60) + "..."
+                                if(child.props.dataName){
+                                    let prop:string = child.props.dataName;
+                                    // let strArray: string[] = [];
+                                    let itemProp = "";
+                                    if(prop.includes(".")){
+                                       const strArray = prop.split(".")
+                                       if( itemProp = item[strArray[0]]){
+                                           itemProp = item[strArray[0]][strArray[1]]
+                                       }
+                                    } else {
+                                        itemProp = item[prop]
                                     }
-                                    return <td> {str} </td>
-                                }
+                                    if (itemProp) {
+                                        let str = itemProp;
+                                        if (itemProp.length > 60) {
+                                            str = itemProp.substring(0, 60) + "..."
+                                        }
+                                        return <td> {str} </td>
+                                    }
+                            }
                                 return <td></td>
                             }
                         }

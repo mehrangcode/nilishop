@@ -24,7 +24,7 @@ export const Sidebar = () => {
                     <h3 className="sidebarBlockTitle">Categories</h3>
                     <div className="sidebarBlockItems">
                         <Link className="sidebarItem" to="/adminPanel/category">Categories list</Link>
-                        <Link className="sidebarItem" to="/categories/Create">Create Category</Link>
+                        <Link className="sidebarItem" to="/adminPanel/category/create">Create Category</Link>
                     </div>
                 </div>
             </div>

@@ -31,11 +31,11 @@ const CategoryList = (props: IProps) => {
     const renderStatus = (record: any) => {
         switch (record.status) {
             case 0:
-                return "Draft";
+                return "Not set";
             case 1:
                 return "Published";
             case 2:
-                return "Reject";
+                return "Draft";
         }
         return ""; 
     }

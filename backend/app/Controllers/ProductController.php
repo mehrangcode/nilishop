@@ -12,7 +12,7 @@ class ProductController extends Controller
     }
 
     public function index ($request, $response) {
-        $data = Product::all();
+        $data = Product::with("category:id,title")->get();
         return $response->withStatus(200)->withJson($data);
     }
     public function findOne ($request, $response, $productId) {

@@ -25,7 +25,7 @@ import { EModal } from "../../Utils/Errors/Modal";
     export const resetItem = (history: any = null): AppAction<ActionModel> => async (dispatch, getState) => {
         dispatch({type: CategoryActionTypes.GetCategoryDataSuccess, data: null})
         if(history){
-            history.push("/adminPanel/Categorys")
+            history.push("/adminPanel/Category")
         }
     }
     export const getCategoryForEdit= (CategoryId: any, history: any): AppAction<ActionModel> => async (dispatch, getState) => {
@@ -34,7 +34,7 @@ import { EModal } from "../../Utils/Errors/Modal";
             const res = await CategoryApi.getOneCategory(CategoryId)
             if(res.data){
                 dispatch({type: CategoryActionTypes.GetCategoryDataSuccess, data: res.data})
-                history.push("/adminPanel/Categorys/edit")
+                history.push("/adminPanel/Category/edit")
             }
         } catch (error) {
             //loagin perosses faild
@@ -48,7 +48,7 @@ import { EModal } from "../../Utils/Errors/Modal";
             const res = await CategoryApi.createCategory(data)
             if(res.data){
                 dispatch({type: CategoryActionTypes.DeleteCategorySuccess})
-                history.push("/adminPanel/Categorys")
+                history.push("/adminPanel/Category")
             }
         } catch (error) {
             //loagin perosses faild
@@ -62,7 +62,7 @@ import { EModal } from "../../Utils/Errors/Modal";
             const res = await CategoryApi.editeCategory(CategoryId, data)
             if(res.data){
                 dispatch({type: CategoryActionTypes.DeleteCategorySuccess})
-                history.push("/adminPanel/Categorys")
+                history.push("/adminPanel/Category")
             }
         } catch (error) {
             //loagin perosses faild
