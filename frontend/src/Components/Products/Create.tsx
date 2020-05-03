@@ -12,9 +12,12 @@ import { urlGeneral, urlVersion } from "../../Utils/General/GConst";
 import draftToHtml from 'draftjs-to-html';
 import { RouteComponentProps } from "react-router";
 import Select from "../../Utils/Select/Select";
+import { EditorState, ContentState, convertFromHTML } from 'draft-js'
+import Input from "../../Utils/Input";
 
 type IProps = IProductState & typeof ProductActions & IFormProps & RouteComponentProps;
 const CreateProducts = (props: IProps) => {
+    const [editorContet, setContent] = useState()
     const onOk = (event: any) => {
         event.preventDefault();
         const values = props.onFormSubmit();
@@ -23,25 +26,40 @@ const CreateProducts = (props: IProps) => {
             props.createProduct(values.data, props.history)
         }
     }
+    useEffect(() => {
+        if (props.itemCRUD.data) {
+            setContent(
+                EditorState.createWithContent(
+                    ContentState.createFromBlockArray(
+                        convertFromHTML(props.itemCRUD.data.content)
+                    )
+                )
+            )
+        }
+    }, [])
+    const onContentStateChange = (contentState: any) => {
+        setContent(contentState)
+    };
     const onCancel = () => {
-        props.history.push("/adminPanel/products")
+        props.resetItem();
+        props.history.push("/adminPanel/products");
     }
 
-    const uploadImageCallBack= async (file: any ) =>{
+    const uploadImageCallBack = async (file: any) => {
         var formData = new FormData();
         formData.append("image", file);
-        console.log(urlGeneral+ urlVersion + "/uploader", file)
+        console.log(urlGeneral + urlVersion + "/uploader", file)
         try {
-            const res = await Axios.post(urlGeneral+ urlVersion + "/uploader", formData)
-            if(res.data){
+            const res = await Axios.post(urlGeneral + urlVersion + "/uploader", formData)
+            if (res.data) {
                 return res.data
             }
-            
+
         } catch (error) {
             console.log(error)
         }
-      }
-      
+    }
+
     const { getFormItem } = props
     return (
         <div>
@@ -51,17 +69,19 @@ const CreateProducts = (props: IProps) => {
                 <label htmlFor="title"> Title</label>
                 {getFormItem({
                     name: "title",
+                    initialvalue: props.itemCRUD.data ? props.itemCRUD.data.title : "",
                     rules: [{
                         required: true,
                         msg: "filed must fill"
                     }]
 
                 },
-                    <input id="title" type="text" placeholder="Product Title" />
+                    <Input id="title" type="text" placeholder="Product Title" />
                 )}
                 <label htmlFor="lead"> Lead</label>
                 {getFormItem({
                     name: "lead",
+                    initialvalue: props.itemCRUD.data ? props.itemCRUD.data.lead : "",
                     rules: [{
                         required: true,
                         msg: "filed must fill"
@@ -76,7 +96,7 @@ const CreateProducts = (props: IProps) => {
                     }]
 
                 },
-                    <input id="lead" type="text" placeholder="Product lead" />
+                    <Input id="lead" type="text" placeholder="Product lead" />
                 )}
                 <label htmlFor="lead"> Content</label>
                 {getFormItem({
@@ -87,37 +107,46 @@ const CreateProducts = (props: IProps) => {
                     }]
 
                 },
-                <Editor
-                    toolbarClassName="toolbarClassName"
-                    wrapperClassName="wrapperClassName"
-                    editorClassName="editorClassName"
-                    toolbar = {{
-                        image: {uploadEnabled: true, 
-                            uploadCallback: uploadImageCallBack, }
-                    }}
-                />)}
+                    <Editor
+
+                        editorState={editorContet}
+                        onEditorStateChange={onContentStateChange}
+                        toolbarClassName="toolbarClassName"
+                        wrapperClassName="wrapperClassName"
+                        editorClassName="editorClassName"
+                        toolbar={{
+                            image: {
+                                uploadEnabled: true,
+                                uploadCallback: uploadImageCallBack,
+                            }
+                        }}
+                    />)}
                 <label htmlFor="price">Price</label>
                 {getFormItem({
                     name: "price",
+                    initialvalue: props.itemCRUD.data ? props.itemCRUD.data.price : "",
                     rules: [
                         {
                             required: true,
                             msg: "price must be fill"
                         }
-                    ]},
-                    <input id="price" name="price" type="text" />
-                    )}
+                    ]
+                },
+                    <Input id="price" name="price" type="text" />
+                )}
                 <label htmlFor="category_id">category</label>
                 {getFormItem({
                     name: "category_id",
+                    initialvalue: props.itemCRUD.data ? props.itemCRUD.data.category_id : "",
                     rules: [
                         {
                             required: true,
                             msg: "category must be fill"
                         }
-                    ]},
+                    ]
+                },
                     <Select url="/categorydropDown" position="bottom" />
-                    )}
+                )}
                 <Button type="submit" >Create</Button>
                 <Button type="button" onClick={onCancel}>Cancel</Button>
             </form>
