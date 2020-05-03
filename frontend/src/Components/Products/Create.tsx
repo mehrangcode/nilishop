@@ -1,29 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { IApplicationState } from "../../store/state";
 import { connect } from "react-redux";
 import { IProductState } from "../../actions/Products/model";
 import * as ProductActions from "../../actions/Products";
 import { FormCreator, IFormProps } from "../../Utils/FormController";
 import Button from "../../Utils/Buttons/Button";
-import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import Axios from "axios";
-import { urlGeneral, urlVersion } from "../../Utils/General/GConst";
-import draftToHtml from 'draftjs-to-html';
 import { RouteComponentProps } from "react-router";
 import Select from "../../Utils/Select/Select";
-import { EditorState, ContentState, convertFromHTML } from 'draft-js'
 import Input from "../../Utils/Input";
+import ContentEditor from "../../Utils/Input/ContentEditor";
 
 type IProps = IProductState & typeof ProductActions & IFormProps & RouteComponentProps<{crudType: string}>;
 const CreateProducts = (props: IProps) => {
-    const [editorContet, setContent] = useState()
     const onOk = (event: any) => {
         event.preventDefault();
         const values = props.onFormSubmit();
         if (!values.err) {
-            console.log("Submit: ", values.data)
-            values.data.content = draftToHtml(values.data.content)
+            // values.data.content = draftToHtml(values.data.content)
             if(props.match.params.crudType.toLocaleLowerCase() === "create"){
                 props.createProduct(values.data, props.history)
             } else if(props.match.params.crudType.toLocaleLowerCase() === "edit") {
@@ -31,41 +25,10 @@ const CreateProducts = (props: IProps) => {
             }
         }
     }
-    useEffect(() => {
-        if (props.itemCRUD.data) {
-            setContent(
-                EditorState.createWithContent(
-                    ContentState.createFromBlockArray(
-                        convertFromHTML(props.itemCRUD.data.content)
-                    )
-                )
-            )
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-    const onContentStateChange = (contentState: any) => {
-        setContent(contentState)
-    };
     const onCancel = () => {
         props.resetItem();
         props.history.push("/adminPanel/products");
     }
-
-    const uploadImageCallBack = async (file: any) => {
-        var formData = new FormData();
-        formData.append("image", file);
-        console.log(urlGeneral + urlVersion + "/uploader", file)
-        try {
-            const res = await Axios.post(urlGeneral + urlVersion + "/uploader", formData)
-            if (res.data) {
-                return res.data
-            }
-
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     const { getFormItem } = props
     return (
         <div>
@@ -113,21 +76,7 @@ const CreateProducts = (props: IProps) => {
                         msg: "filed must fill"
                     }]
 
-                },
-                    <Editor
-
-                        editorState={editorContet}
-                        onEditorStateChange={onContentStateChange}
-                        toolbarClassName="toolbarClassName"
-                        wrapperClassName="wrapperClassName"
-                        editorClassName="editorClassName"
-                        toolbar={{
-                            image: {
-                                uploadEnabled: true,
-                                uploadCallback: uploadImageCallBack,
-                            }
-                        }}
-                    />)}
+                }, <ContentEditor /> )}
                 <label htmlFor="price">Price</label>
                 {getFormItem({
                     name: "price",

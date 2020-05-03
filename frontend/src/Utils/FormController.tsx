@@ -94,7 +94,7 @@ export const FormCreator = <P extends IFormProps>(Component: React.ComponentType
         }
         
         onChangeHandler(name: string = "", e: any, rules: IRules) {
-            const data: any = this.state.data;// ? { ...this.state.data } : {}
+            const data: any = this.state.data;
             let value = e;
             if (e.target) {
                 value = e.target.value
@@ -157,7 +157,6 @@ export const FormCreator = <P extends IFormProps>(Component: React.ComponentType
         }
 
         render() {
-            console.log("Form State: ", this.state)
             const { ...props } = this.props;
             return <Component {...props as P}
                 getFormItem={this.formItem}
