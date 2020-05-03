@@ -23,7 +23,7 @@ export const Sidebar = () => {
                 <div className="sidebarBlock">
                     <h3 className="sidebarBlockTitle">Categories</h3>
                     <div className="sidebarBlockItems">
-                        <Link className="sidebarItem" to="/categories">Categories list</Link>
+                        <Link className="sidebarItem" to="/adminPanel/category">Categories list</Link>
                         <Link className="sidebarItem" to="/categories/Create">Create Category</Link>
                     </div>
                 </div>

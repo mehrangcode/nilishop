@@ -3,6 +3,7 @@ import { Sidebar } from './SideBar';
 import { Switch, Route } from 'react-router-dom';
 import ProductsList from '../Products/List';
 import CreateProducts from '../Products/Create';
+import CategoryList from '../Category/List';
 // type IProps = {
 //     panel: IPanelState,
 //     auth: IAuthState
@@ -14,6 +15,7 @@ const PanelPage: React.FC = () => {
            <Switch>
                 <Route path="/adminPanel/products/:crudType" component={CreateProducts} />
                 <Route path="/adminPanel/products" component={ProductsList} />
+                <Route path="/adminPanel/category" component={CategoryList} />
                 <Route path="/adminPanel" render = {() => <p>Dashboard</p>} />
             </Switch>
            </div>
