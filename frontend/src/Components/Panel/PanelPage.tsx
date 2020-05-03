@@ -18,7 +18,7 @@ const PanelPage: React.FC<IProps> = (props: IProps) => {
         <div className="container">
            <div className="content">
            <Switch>
-                <Route path="/adminPanel/products/Create" component={CreateProducts} />
+                <Route path="/adminPanel/products/:crudType" component={CreateProducts} />
                 <Route path="/adminPanel/products" component={ProductsList} />
                 <Route path="/adminPanel" render = {() => <p>Dashboard</p>} />
             </Switch>

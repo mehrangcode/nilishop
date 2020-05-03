@@ -12,6 +12,9 @@ export const PanelApi = {
     createProduct : async (data: any) => {
         return axios.post(PanelUrl+ "/products", data)
     },
+    editeProduct : async (productId: string, data: any) => {
+        return axios.put(PanelUrl+ "/products/"+ productId, data)
+    },
     deleteProducts : async (productId: string) => {
         return axios.delete(PanelUrl+ "/products/"+productId)
     },

@@ -12,6 +12,7 @@ const ProductsList = (props: IProps) => {
 
     useEffect(() => {
         props.getProducts()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     const goToUpdateProduct = (record: any) => {
         return <div>
@@ -27,10 +28,10 @@ const ProductsList = (props: IProps) => {
         </Button>
         </div>
     }
-    const renderContent = (record: any) => {
+    // const renderContent = (record: any) => {
         
-       return <div dangerouslySetInnerHTML={{ __html: record.content }} />
-    }
+    //    return <div dangerouslySetInnerHTML={{ __html: record.content }} />
+    // }
     return (
         <>
             <h1>Products</h1>

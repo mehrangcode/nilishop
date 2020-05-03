@@ -34,7 +34,7 @@ import { EModal } from "../../Utils/Errors/Modal";
             const res = await PanelApi.getOneProduct(productId)
             if(res.data){
                 dispatch({type: PanelActionTypes.GetProductDataSuccess, data: res.data})
-                history.push("/adminPanel/products/create")
+                history.push("/adminPanel/products/edit")
             }
         } catch (error) {
             //loagin perosses faild
@@ -46,6 +46,20 @@ import { EModal } from "../../Utils/Errors/Modal";
         dispatch({type: PanelActionTypes.DeleteProduct})
         try {
             const res = await PanelApi.createProduct(data)
+            if(res.data){
+                dispatch({type: PanelActionTypes.DeleteProductSuccess})
+                history.push("/adminPanel/products")
+            }
+        } catch (error) {
+            //loagin perosses faild
+            dispatch({type: PanelActionTypes.DeleteProductFail})
+            EModal(error)
+        }
+    }
+    export const editProduct= (productId: string, data: any, history: any): AppAction<ActionModel> => async (dispatch, getState) => {
+        dispatch({type: PanelActionTypes.DeleteProduct})
+        try {
+            const res = await PanelApi.editeProduct(productId, data)
             if(res.data){
                 dispatch({type: PanelActionTypes.DeleteProductSuccess})
                 history.push("/adminPanel/products")

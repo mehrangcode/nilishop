@@ -157,6 +157,7 @@ export const FormCreator = <P extends IFormProps>(Component: React.ComponentType
         }
 
         render() {
+            console.log("Form State: ", this.state)
             const { ...props } = this.props;
             return <Component {...props as P}
                 getFormItem={this.formItem}
@@ -170,6 +171,7 @@ const FromItemWrapper = (props: any) => {
     React.useEffect(() => {
             props.initialValues(props.name, props.rules)
         
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
         <div className="itemWrapper">

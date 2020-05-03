@@ -104,6 +104,34 @@ export const ProductReducer: Reducer<IProductState> = (
                 },
             } as IProductState;
         }
+        case PanelActionTypes.EditProduct: {
+            return {
+                ...state,
+                itemCRUD: {
+                    ...state.itemCRUD,
+                    loading: "Edit",
+                },
+            } as IProductState;
+        }
+        case PanelActionTypes.EditProductSuccess: {
+            return {
+                ...state,
+                itemCRUD: {
+                    ...state.itemCRUD,
+                    loading: "",
+                    data: null
+                },
+            } as IProductState;
+        }
+        case PanelActionTypes.EditProductFail: {
+            return {
+                ...state,
+                itemCRUD: {
+                    ...state.itemCRUD,
+                    loading: "",
+                },
+            } as IProductState;
+        }
         case PanelActionTypes.DeleteProduct: {
             return {
                 ...state,

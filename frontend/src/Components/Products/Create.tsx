@@ -15,7 +15,7 @@ import Select from "../../Utils/Select/Select";
 import { EditorState, ContentState, convertFromHTML } from 'draft-js'
 import Input from "../../Utils/Input";
 
-type IProps = IProductState & typeof ProductActions & IFormProps & RouteComponentProps;
+type IProps = IProductState & typeof ProductActions & IFormProps & RouteComponentProps<{crudType: string}>;
 const CreateProducts = (props: IProps) => {
     const [editorContet, setContent] = useState()
     const onOk = (event: any) => {
@@ -23,7 +23,11 @@ const CreateProducts = (props: IProps) => {
         const values = props.onFormSubmit();
         if (!values.err) {
             values.data.content = draftToHtml(values.data.content)
-            props.createProduct(values.data, props.history)
+            if(props.match.params.crudType === "create"){
+                props.createProduct(values.data, props.history)
+            } else if(props.match.params.crudType === "edit") {
+                props.editProduct(props.itemCRUD.data.id, values.data, props.history)
+            }
         }
     }
     useEffect(() => {
@@ -36,6 +40,7 @@ const CreateProducts = (props: IProps) => {
                 )
             )
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     const onContentStateChange = (contentState: any) => {
         setContent(contentState)

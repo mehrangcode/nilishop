@@ -18,6 +18,8 @@ const Input = (props: IProps) => {
         if(props.initialvalue){
             setValue(props.initialvalue)
         }
+        
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     useEffect(()=> {
         if(props.onChange){

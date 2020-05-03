@@ -1,1 +1,8 @@
-export {getProducts, createProduct, deleteProducts, getProductForEdit, resetItem } from "./action";
+export {
+    getProducts, 
+    createProduct, 
+    editProduct,
+    deleteProducts, 
+    getProductForEdit, 
+    resetItem 
+} from "./action";

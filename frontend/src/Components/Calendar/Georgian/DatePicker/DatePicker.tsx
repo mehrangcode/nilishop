@@ -68,6 +68,7 @@ const CalendarPage: React.FC<IProps> = (props: IProps) => {
         setMinute(selectDate.minute)
         setTimeFormat(selectDate.hour > 12 || selectDate.hour === 0 ? "pm" : "am")
         setDays(createMonth(year, theMonthIndex))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const createMonth = (year: number, monthIndex: number) => {
