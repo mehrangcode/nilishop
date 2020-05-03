@@ -5,8 +5,9 @@ import { IProductState } from "../../actions/Products/model";
 import * as ProductActions from "../../actions/Products";
 import { Table, Column } from "../../Utils/Table";
 import Button from "../../Utils/Buttons/Button";
+import { RouteComponentProps } from "react-router";
 
-type IProps = IProductState & typeof ProductActions;
+type IProps = IProductState & typeof ProductActions & RouteComponentProps;
 const ProductsList = (props: IProps) => {
 
     useEffect(() => {
@@ -15,7 +16,7 @@ const ProductsList = (props: IProps) => {
     const goToUpdateProduct = (record: any) => {
         return <div>
             <button onClick={() => {
-            console.log(record.title)
+            props.getProductForEdit(record.id, props.history)
         }}>
             Update
         </button>
