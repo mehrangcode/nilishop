@@ -3,18 +3,24 @@
     position: relative;
 }
 .displayContainer {
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid $theme_light;
-    background-color: white;
+	display: flex;
+	justify-content: space-between;
+	border: 1px solid #999;
+	background-color: white;
+	min-height: 30px;
+	border-radius: 5px;
 }
 .inputContainer {
     width: 19px;
 }
 .selectInput {
-    width: 19px;
-    border: none;
-    margin: 0 5px;
+    width: 19px  !important;
+    border: none  !important;
+    margin: 0 5px  !important;
+}
+.selectInput:focus {
+	box-shadow: none !important;
+	border: none;
 }
 .selectBtn {
     width: 25px;
