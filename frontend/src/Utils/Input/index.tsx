@@ -27,6 +27,7 @@ const Input = (props: IProps) => {
                 props.onChange(inputValue)
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[inputValue])
 
     const onchangeHandler = (event: any) => {
