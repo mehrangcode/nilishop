@@ -70,7 +70,7 @@ class Select extends React.Component<IProps, IState> {
             },
         })
             .then(response => response.json())
-            .then(json => this.setState({ optionList: json.data }, () => {
+            .then(json =>  this.setState({ optionList: json.data ? json.data : [] }, () => {
                 this.setInitialValue()
                 this.moveFocus()
                 this.getChildren()
@@ -246,6 +246,9 @@ class Select extends React.Component<IProps, IState> {
         if (this.state.searchValue !== "" && options.length > 0) {
             const matchData = this.state.searchValue.toLocaleLowerCase().trim()
             options = options.filter((option: any) => option[displayProp].toLocaleLowerCase().trim().match(matchData));
+        }
+        if(!options){
+            return null
         }
         return options.map((option: any) => {
             return (option.optionElement ? option.optionElement(options[this.state.activeItem][valueProp]) : null)
