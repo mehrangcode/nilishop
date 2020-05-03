@@ -2,7 +2,7 @@
 import axios from '../../AxiosConfig';
 const PanelUrl = urlGeneral + urlVersion 
 
-export const PanelApi = {
+export const ProductApi = {
     getProducts : async () => {
         return axios.get(PanelUrl+ "/products")
     },

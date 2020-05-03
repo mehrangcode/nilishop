@@ -1,5 +1,5 @@
 import { Reducer } from "redux";
-import { PanelActionTypes } from "./actionType";
+import { ProductActionTypes } from "./actionType";
 import { IProductState, ActionModel } from "./model";
 
 const unloadedState: IProductState = {
@@ -21,7 +21,7 @@ export const ProductReducer: Reducer<IProductState> = (
 ) => {
     switch (action.type) {
         //#################### Login cases
-        case PanelActionTypes.GetProductsList: {
+        case ProductActionTypes.GetProductsList: {
             return {
                 ...state,
                 products: {
@@ -30,7 +30,7 @@ export const ProductReducer: Reducer<IProductState> = (
                 },
             } as IProductState;
         }
-        case PanelActionTypes.GetProductsListSuccess: {
+        case ProductActionTypes.GetProductsListSuccess: {
             return {
                 ...state,
                 products: {
@@ -40,7 +40,7 @@ export const ProductReducer: Reducer<IProductState> = (
                 },
             } as IProductState;
         }
-        case PanelActionTypes.GetProductsListFail: {
+        case ProductActionTypes.GetProductsListFail: {
             return {
                 ...state,
                 products: {
@@ -49,7 +49,7 @@ export const ProductReducer: Reducer<IProductState> = (
                 },
             } as IProductState;
         }
-        case PanelActionTypes.CreateProduct: {
+        case ProductActionTypes.CreateProduct: {
             return {
                 ...state,
                 itemCRUD: {
@@ -58,7 +58,7 @@ export const ProductReducer: Reducer<IProductState> = (
                 },
             } as IProductState;
         }
-        case PanelActionTypes.CreateProductSuccess: {
+        case ProductActionTypes.CreateProductSuccess: {
             return {
                 ...state,
                 itemCRUD: {
@@ -67,7 +67,7 @@ export const ProductReducer: Reducer<IProductState> = (
                 },
             } as IProductState;
         }
-        case PanelActionTypes.CreateProductFail: {
+        case ProductActionTypes.CreateProductFail: {
             return {
                 ...state,
                 itemCRUD: {
@@ -76,7 +76,7 @@ export const ProductReducer: Reducer<IProductState> = (
                 },
             } as IProductState;
         }
-        case PanelActionTypes.GetProductData: {
+        case ProductActionTypes.GetProductData: {
             return {
                 ...state,
                 itemCRUD: {
@@ -85,7 +85,7 @@ export const ProductReducer: Reducer<IProductState> = (
                 },
             } as IProductState;
         }
-        case PanelActionTypes.GetProductDataSuccess: {
+        case ProductActionTypes.GetProductDataSuccess: {
             return {
                 ...state,
                 itemCRUD: {
@@ -95,7 +95,7 @@ export const ProductReducer: Reducer<IProductState> = (
                 },
             } as IProductState;
         }
-        case PanelActionTypes.GetProductDataFail: {
+        case ProductActionTypes.GetProductDataFail: {
             return {
                 ...state,
                 itemCRUD: {
@@ -104,7 +104,7 @@ export const ProductReducer: Reducer<IProductState> = (
                 },
             } as IProductState;
         }
-        case PanelActionTypes.EditProduct: {
+        case ProductActionTypes.EditProduct: {
             return {
                 ...state,
                 itemCRUD: {
@@ -113,7 +113,7 @@ export const ProductReducer: Reducer<IProductState> = (
                 },
             } as IProductState;
         }
-        case PanelActionTypes.EditProductSuccess: {
+        case ProductActionTypes.EditProductSuccess: {
             return {
                 ...state,
                 itemCRUD: {
@@ -123,7 +123,7 @@ export const ProductReducer: Reducer<IProductState> = (
                 },
             } as IProductState;
         }
-        case PanelActionTypes.EditProductFail: {
+        case ProductActionTypes.EditProductFail: {
             return {
                 ...state,
                 itemCRUD: {
@@ -132,7 +132,7 @@ export const ProductReducer: Reducer<IProductState> = (
                 },
             } as IProductState;
         }
-        case PanelActionTypes.DeleteProduct: {
+        case ProductActionTypes.DeleteProduct: {
             return {
                 ...state,
                 itemCRUD: {
@@ -141,7 +141,7 @@ export const ProductReducer: Reducer<IProductState> = (
                 },
             } as IProductState;
         }
-        case PanelActionTypes.DeleteProductSuccess: {
+        case ProductActionTypes.DeleteProductSuccess: {
             return {
                 ...state,
                 itemCRUD: {
@@ -150,7 +150,7 @@ export const ProductReducer: Reducer<IProductState> = (
                 },
             } as IProductState;
         }
-        case PanelActionTypes.DeleteProductFail: {
+        case ProductActionTypes.DeleteProductFail: {
             return {
                 ...state,
                 itemCRUD: {

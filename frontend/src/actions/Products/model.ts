@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import {PanelActionTypes} from './actionType';
+import {ProductActionTypes} from './actionType';
 
 export interface IProductState {
     products: {
@@ -14,55 +14,55 @@ export interface IProductState {
 }
 
 interface IGetProductsList extends Action<string> {
-    type: PanelActionTypes.GetProductsList
+    type: ProductActionTypes.GetProductsList
 }
 interface IGetProductsListSuccess extends Action<string> {
-    type: PanelActionTypes.GetProductsListSuccess
+    type: ProductActionTypes.GetProductsListSuccess
     data: any
 }
 interface IGetProductsListFail extends Action<string> {
-    type: PanelActionTypes.GetProductsListFail
+    type: ProductActionTypes.GetProductsListFail
 }
 
 interface ICreateProduct extends Action<string> {
-    type: PanelActionTypes.CreateProduct
+    type: ProductActionTypes.CreateProduct
 }
 interface ICreateProductSuccess extends Action<string> {
-    type: PanelActionTypes.CreateProductSuccess
+    type: ProductActionTypes.CreateProductSuccess
 }
 interface ICreateProductFail extends Action<string> {
-    type: PanelActionTypes.CreateProductFail
+    type: ProductActionTypes.CreateProductFail
 }
 
 interface IGetProductData extends Action<string> {
-    type: PanelActionTypes.GetProductData
+    type: ProductActionTypes.GetProductData
 }
 interface IGetProductDataSuccess extends Action<string> {
-    type: PanelActionTypes.GetProductDataSuccess;
+    type: ProductActionTypes.GetProductDataSuccess;
     data: any;
 }
 interface IGetProductDataFail extends Action<string> {
-    type: PanelActionTypes.GetProductDataFail
+    type: ProductActionTypes.GetProductDataFail
 }
 
 interface IEditProduct extends Action<string> {
-    type: PanelActionTypes.EditProduct
+    type: ProductActionTypes.EditProduct
 }
 interface IEditProductSuccess extends Action<string> {
-    type: PanelActionTypes.EditProductSuccess
+    type: ProductActionTypes.EditProductSuccess
 }
 interface IEditProductFail extends Action<string> {
-    type: PanelActionTypes.EditProductFail
+    type: ProductActionTypes.EditProductFail
 }
 
 interface IDeleteProduct extends Action<string> {
-    type: PanelActionTypes.DeleteProduct
+    type: ProductActionTypes.DeleteProduct
 }
 interface IDeleteProductSuccess extends Action<string> {
-    type: PanelActionTypes.DeleteProductSuccess
+    type: ProductActionTypes.DeleteProductSuccess
 }
 interface IDeleteProductFail extends Action<string> {
-    type: PanelActionTypes.DeleteProductFail
+    type: ProductActionTypes.DeleteProductFail
 }
 
 
