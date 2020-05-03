@@ -11,16 +11,16 @@ import Select from "../../Utils/Select/Select";
 import Input from "../../Utils/Input";
 import ContentEditor from "../../Utils/Input/ContentEditor";
 
-type IProps = IProductState & typeof ProductActions & IFormProps & RouteComponentProps<{crudType: string}>;
+type IProps = IProductState & typeof ProductActions & IFormProps & RouteComponentProps<{ crudType: string }>;
 const CreateProducts = (props: IProps) => {
     const onOk = (event: any) => {
         event.preventDefault();
         const values = props.onFormSubmit();
         if (!values.err) {
             // values.data.content = draftToHtml(values.data.content)
-            if(props.match.params.crudType.toLocaleLowerCase() === "create"){
+            if (props.match.params.crudType.toLocaleLowerCase() === "create") {
                 props.createProduct(values.data, props.history)
-            } else if(props.match.params.crudType.toLocaleLowerCase() === "edit") {
+            } else if (props.match.params.crudType.toLocaleLowerCase() === "edit") {
                 props.editProduct(props.itemCRUD.data.id, values.data, props.history)
             }
         }
@@ -47,26 +47,28 @@ const CreateProducts = (props: IProps) => {
                 },
                     <Input id="title" type="text" placeholder="Product Title" />
                 )}
-                <label htmlFor="lead"> Lead</label>
-                {getFormItem({
-                    name: "lead",
-                    initialvalue: props.itemCRUD.data ? props.itemCRUD.data.lead : "",
-                    rules: [{
-                        required: true,
-                        msg: "filed must fill"
-                    },
-                    {
-                        max: 120,
-                        msg: "lead must be between 20 to 120"
-                    },
-                    {
-                        min: 20,
-                        msg: "lead must be between 20 to 120"
-                    }]
+                
+                        <label htmlFor="lead"> Lead</label>
+                        {getFormItem({
+                            name: "lead",
+                            initialvalue: props.itemCRUD.data ? props.itemCRUD.data.lead : "",
+                            rules: [{
+                                required: true,
+                                msg: "filed must fill"
+                            },
+                            {
+                                max: 120,
+                                msg: "lead must be between 20 to 120"
+                            },
+                            {
+                                min: 20,
+                                msg: "lead must be between 20 to 120"
+                            }]
 
-                },
-                    <Input id="lead" type="text" placeholder="Product lead" />
-                )}
+                        },
+                            <Input id="lead" type="text" placeholder="Product lead" />
+                        )}
+                        
                 <label htmlFor="lead"> Content</label>
                 {getFormItem({
                     name: "content",
@@ -76,37 +78,45 @@ const CreateProducts = (props: IProps) => {
                         msg: "filed must fill"
                     }]
 
-                }, <ContentEditor /> )}
-                <label htmlFor="price">Price</label>
-                {getFormItem({
-                    name: "price",
-                    initialvalue: props.itemCRUD.data ? props.itemCRUD.data.price : "",
-                    rules: [
-                        {
-                            required: true,
-                            msg: "price must be fill"
-                        }
-                    ]
-                },
-                    <Input id="price" name="price" type="text" />
-                )}
-                <label htmlFor="category_id">category</label>
-                {getFormItem({
-                    name: "category_id",
-                    initialvalue: props.itemCRUD.data ? props.itemCRUD.data.category_id : "",
-                    rules: [
-                        {
-                            required: true,
-                            msg: "category must be fill"
-                        }
-                    ]
-                },
-                    <Select url="/categorydropDown" position="bottom" />
-                )}
+                }, <ContentEditor />)}
+
+                <div className="row">
+                    <div className="col-4">
+                        <label htmlFor="price">Price</label>
+                        {getFormItem({
+                            name: "price",
+                            initialvalue: props.itemCRUD.data ? props.itemCRUD.data.price : "",
+                            rules: [
+                                {
+                                    required: true,
+                                    msg: "price must be fill"
+                                }
+                            ]
+                        },
+                            <Input id="price" name="price" type="text" />
+                        )}
+                    </div>
+                    <div className="col-4">
+
+                        <label htmlFor="category_id">category</label>
+                        {getFormItem({
+                            name: "category_id",
+                            initialvalue: props.itemCRUD.data ? props.itemCRUD.data.category_id : "",
+                            rules: [
+                                {
+                                    required: true,
+                                    msg: "category must be fill"
+                                }
+                            ]
+                        },
+                            <Select url="/categorydropDown" position="bottom" />
+                        )}
+                    </div>
+                </div>
                 <Button type="submit" >{
-                props.match.params.crudType.toLocaleLowerCase() === "create" ?
-            "Create" : "Update"    
-            }</Button>
+                    props.match.params.crudType.toLocaleLowerCase() === "create" ?
+                        "Create" : "Update"
+                }</Button>
                 <Button type="button" onClick={onCancel}>Cancel</Button>
             </form>
         </div>
