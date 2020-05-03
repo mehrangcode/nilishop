@@ -130,9 +130,8 @@ export const FormCreator = <P extends IFormProps>(Component: React.ComponentType
 
         formItem = (itemProps: IFormItem, comp: any) => {
             const newValue: string = this.state.data[itemProps.name] ? this.state.data[itemProps.name] : ""
-            const initialElement = {
+            const initialElement: any = {
                 name: itemProps.name,
-                initialvalue: itemProps.initialvalue,
                 label: itemProps.label,
                 onChange: (e: any) => {
                     if (comp.props.onChange) {
@@ -141,6 +140,9 @@ export const FormCreator = <P extends IFormProps>(Component: React.ComponentType
                     this.onChangeHandler(itemProps.name, e, itemProps.rules)
                 },
                 value: newValue
+            }
+            if(itemProps.initialvalue){
+                initialElement.initialvalue= itemProps.initialvalue
             }
 
             const El = React.cloneElement(comp,  initialElement, comp.props.children);
