@@ -8,6 +8,11 @@ export enum PanelActionTypes {
     CreateProductSuccess = "Panel/CreateProductSuccess",
     CreateProductFail = "Panel/CreateProductFail",
 
+    //Create Products
+    GetProductData = "Panel/GetProductData",
+    GetProductDataSuccess = "Panel/GetProductDataSuccess",
+    GetProductDataFail = "Panel/GetProductDataFail",
+
     //Delete Products
     DeleteProduct = "Panel/DeleteProduct",
     DeleteProductSuccess = "Panel/DeleteProductSuccess",

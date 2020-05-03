@@ -9,6 +9,7 @@ const unloadedState: IProductState = {
     },
     itemCRUD: {
         loading: "",
+        data: null,
         open: ""
     }
 };
@@ -72,6 +73,34 @@ export const ProductReducer: Reducer<IProductState> = (
                 itemCRUD: {
                     ...state.itemCRUD,
                     loading: ""
+                },
+            } as IProductState;
+        }
+        case PanelActionTypes.GetProductData: {
+            return {
+                ...state,
+                itemCRUD: {
+                    ...state.itemCRUD,
+                    loading: "Get"
+                },
+            } as IProductState;
+        }
+        case PanelActionTypes.GetProductDataSuccess: {
+            return {
+                ...state,
+                itemCRUD: {
+                    ...state.itemCRUD,
+                    loading: "",
+                    data: action.data
+                },
+            } as IProductState;
+        }
+        case PanelActionTypes.GetProductDataFail: {
+            return {
+                ...state,
+                itemCRUD: {
+                    ...state.itemCRUD,
+                    loading: "",
                 },
             } as IProductState;
         }

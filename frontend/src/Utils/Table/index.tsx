@@ -19,7 +19,6 @@ export const Table = (props: IProps) => {
                     {React.Children.map(props.children, (child: any, index: number) => {
                         if (child) {
                             if (child.type === Column) {
-                                console.log("name: ", child.props.name)
                                 return (
                                     <th key={"key" + index}>
                                         {child.props.title}

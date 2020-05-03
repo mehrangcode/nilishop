@@ -22,6 +22,26 @@ import { EModal } from "../../Utils/Errors/Modal";
         
     }
 
+    export const resetItem = (history: any = null): AppAction<ActionModel> => async (dispatch, getState) => {
+        dispatch({type: PanelActionTypes.GetProductDataSuccess, data: null})
+        if(history){
+            history.push("/adminPanel/products")
+        }
+    }
+    export const getProductForEdit= (productId: any, history: any): AppAction<ActionModel> => async (dispatch, getState) => {
+        dispatch({type: PanelActionTypes.GetProductData})
+        try {
+            const res = await PanelApi.getOneProduct(productId)
+            if(res.data){
+                dispatch({type: PanelActionTypes.GetProductDataSuccess, data: res.data})
+                history.push("/adminPanel/products/create")
+            }
+        } catch (error) {
+            //loagin perosses faild
+            dispatch({type: PanelActionTypes.GetProductDataFail})
+            EModal(error)
+        }
+    }
     export const createProduct= (data: any, history: any): AppAction<ActionModel> => async (dispatch, getState) => {
         dispatch({type: PanelActionTypes.DeleteProduct})
         try {

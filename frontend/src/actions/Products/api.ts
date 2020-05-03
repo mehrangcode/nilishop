@@ -6,6 +6,9 @@ export const PanelApi = {
     getProducts : async () => {
         return axios.get(PanelUrl+ "/products")
     },
+    getOneProduct : async (productId: any) => {
+        return axios.get(PanelUrl+ "/products/"+ productId)
+    },
     createProduct : async (data: any) => {
         return axios.post(PanelUrl+ "/products", data)
     },

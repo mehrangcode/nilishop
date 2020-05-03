@@ -8,6 +8,7 @@ export interface IProductState {
     }
     itemCRUD: {
         loading: string;
+        data: any;
         open: string;
     }
 }
@@ -33,6 +34,17 @@ interface ICreateProductFail extends Action<string> {
     type: PanelActionTypes.CreateProductFail
 }
 
+interface IGetProductData extends Action<string> {
+    type: PanelActionTypes.GetProductData
+}
+interface IGetProductDataSuccess extends Action<string> {
+    type: PanelActionTypes.GetProductDataSuccess;
+    data: any;
+}
+interface IGetProductDataFail extends Action<string> {
+    type: PanelActionTypes.GetProductDataFail
+}
+
 interface IDeleteProduct extends Action<string> {
     type: PanelActionTypes.DeleteProduct
 }
@@ -56,3 +68,6 @@ export type ActionModel = IGetProductsList
     | IDeleteProduct
     | IDeleteProductSuccess
     | IDeleteProductFail
+    | IGetProductData
+    | IGetProductDataSuccess
+    | IGetProductDataFail
