@@ -22,13 +22,13 @@ import { EModal } from "../../Utils/Errors/Modal";
         
     }
 
-    export const createProduct= (data: any): AppAction<ActionModel> => async (dispatch, getState) => {
+    export const createProduct= (data: any, history: any): AppAction<ActionModel> => async (dispatch, getState) => {
         dispatch({type: PanelActionTypes.DeleteProduct})
         try {
             const res = await PanelApi.createProduct(data)
             if(res.data){
                 dispatch({type: PanelActionTypes.DeleteProductSuccess})
-                getProducts()(dispatch, getState)
+                history.push("/adminPanel/products")
             }
         } catch (error) {
             //loagin perosses faild

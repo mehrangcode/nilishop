@@ -6,22 +6,24 @@ import * as ProductActions from "../../actions/Products";
 import { FormCreator, IFormProps } from "../../Utils/FormController";
 import Button from "../../Utils/Buttons/Button";
 import { Editor } from 'react-draft-wysiwyg';
-import {EditorState, convertToRaw } from 'draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import Axios from "axios";
 import { urlGeneral, urlVersion } from "../../Utils/General/GConst";
 import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
+import { RouteComponentProps } from "react-router";
 
-type IProps = IProductState & typeof ProductActions & IFormProps;
+type IProps = IProductState & typeof ProductActions & IFormProps & RouteComponentProps;
 const CreateProducts = (props: IProps) => {
     const onOk = (event: any) => {
         event.preventDefault();
         const values = props.onFormSubmit();
         if (!values.err) {
             values.data.content = draftToHtml(values.data.content)
-            props.createProduct(values.data)
+            props.createProduct(values.data, props.history)
         }
+    }
+    const onCancel = () => {
+        props.history.push("/adminPanel/products")
     }
 
     const uploadImageCallBack= async (file: any ) =>{
@@ -116,6 +118,7 @@ const CreateProducts = (props: IProps) => {
                     <input id="category_id" name="category_id" type="text" />
                     )}
                 <Button type="submit" >Create</Button>
+                <Button type="button" onClick={onCancel}>Cancel</Button>
             </form>
         </div>
     )
