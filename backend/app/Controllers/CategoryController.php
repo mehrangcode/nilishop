@@ -19,6 +19,14 @@ class CategoryController extends Controller
         $data = Category::all();
         return $response->withStatus(200)->withJson($data);
     }
+    public function dropDown ($request, $response) {
+        $categories = Category::all();
+        $data = array();
+        foreach ($categories as $category) {
+            $data[] = ['id' => $category->id, 'title' => $category->title];
+        }
+        return $response->withStatus(200)->withJson(['data'=> $data]);
+    }
 
     public function findOne ($request, $response, $categoryId) {
         $data = Category::where('id', $categoryId)->first();

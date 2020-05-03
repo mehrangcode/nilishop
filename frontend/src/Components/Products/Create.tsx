@@ -11,6 +11,7 @@ import Axios from "axios";
 import { urlGeneral, urlVersion } from "../../Utils/General/GConst";
 import draftToHtml from 'draftjs-to-html';
 import { RouteComponentProps } from "react-router";
+import Select from "../../Utils/Select/Select";
 
 type IProps = IProductState & typeof ProductActions & IFormProps & RouteComponentProps;
 const CreateProducts = (props: IProps) => {
@@ -115,7 +116,7 @@ const CreateProducts = (props: IProps) => {
                             msg: "category must be fill"
                         }
                     ]},
-                    <input id="category_id" name="category_id" type="text" />
+                    <Select url="/categorydropDown" position="bottom" />
                     )}
                 <Button type="submit" >Create</Button>
                 <Button type="button" onClick={onCancel}>Cancel</Button>

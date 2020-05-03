@@ -61,6 +61,7 @@ $app->delete('/api/products/{productId}', "ProductController:delete");
 
 //category
 $app->get('/api/category', "CategoryController:index");
+$app->get('/api/categorydropDown', "CategoryController:dropDown");
 $app->get('/api/category/{categoryId}', "CategoryController:findOne");
 $app->get('/api/category/{categoryId}/products', "CategoryController:get_Category_Products");
 $app->post('/api/category', "CategoryController:create");
@@ -68,5 +69,4 @@ $app->put('/api/category/{categoryId}', "CategoryController:update");
 $app->delete('/api/category/{categoryId}', "CategoryController:delete");
 
 //Admin Panel
-
 $app->get('/api/adminPanel', "AdminPanelController:index");
