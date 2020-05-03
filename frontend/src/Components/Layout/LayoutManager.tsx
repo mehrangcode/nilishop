@@ -11,6 +11,7 @@ import { IApplicationState } from '../../store/state';
 import PanelPage from '../Panel/PanelPage';
 import CalendarPage from '../Calendar/CalendarPage';
 import ProductsList from '../Products/List';
+import Footer from '../Footer';
 
 
 
@@ -34,6 +35,7 @@ const LayoutManager: React.FC<IProps> = (props: IProps) => {
                     ) : <Route path="/about" component={AboutPage} />}
                 <Route path="/" component={Home} />
             </Switch>
+            <Footer />
         </React.Fragment>
     )
 }
