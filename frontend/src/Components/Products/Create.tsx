@@ -22,10 +22,11 @@ const CreateProducts = (props: IProps) => {
         event.preventDefault();
         const values = props.onFormSubmit();
         if (!values.err) {
+            console.log("Submit: ", values.data)
             values.data.content = draftToHtml(values.data.content)
-            if(props.match.params.crudType === "create"){
+            if(props.match.params.crudType.toLocaleLowerCase() === "create"){
                 props.createProduct(values.data, props.history)
-            } else if(props.match.params.crudType === "edit") {
+            } else if(props.match.params.crudType.toLocaleLowerCase() === "edit") {
                 props.editProduct(props.itemCRUD.data.id, values.data, props.history)
             }
         }
@@ -106,6 +107,7 @@ const CreateProducts = (props: IProps) => {
                 <label htmlFor="lead"> Content</label>
                 {getFormItem({
                     name: "content",
+                    initialvalue: props.itemCRUD.data ? props.itemCRUD.data.content : "",
                     rules: [{
                         required: true,
                         msg: "filed must fill"
@@ -152,7 +154,10 @@ const CreateProducts = (props: IProps) => {
                 },
                     <Select url="/categorydropDown" position="bottom" />
                 )}
-                <Button type="submit" >Create</Button>
+                <Button type="submit" >{
+                props.match.params.crudType.toLocaleLowerCase() === "create" ?
+            "Create" : "Update"    
+            }</Button>
                 <Button type="button" onClick={onCancel}>Cancel</Button>
             </form>
         </div>

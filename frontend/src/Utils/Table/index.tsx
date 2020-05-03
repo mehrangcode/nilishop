@@ -12,8 +12,10 @@ export const Table = (props: IProps) => {
         return null
     }
     return (
-        <table>
+        <div>
             <Spinner loading={props.loading ? props.loading : false} />
+            
+        <table>
             <thead>
                 <tr>
                     {React.Children.map(props.children, (child: any, index: number) => {
@@ -51,6 +53,8 @@ export const Table = (props: IProps) => {
             })}
             </tbody>
         </table>
+    
+        </div>
     )
 }
 

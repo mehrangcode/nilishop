@@ -24,6 +24,7 @@ const Input = (props: IProps) => {
     useEffect(()=> {
         if(props.onChange){
             if(inputValue || inputValue === ""){
+                console.log("props.onChange", inputValue)
                 props.onChange(inputValue)
             }
         }

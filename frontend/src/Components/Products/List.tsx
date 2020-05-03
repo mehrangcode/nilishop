@@ -15,7 +15,7 @@ const ProductsList = (props: IProps) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     const goToUpdateProduct = (record: any) => {
-        return <div>
+        return <React.Fragment>
             <button onClick={() => {
             props.getProductForEdit(record.id, props.history)
         }}>
@@ -26,7 +26,7 @@ const ProductsList = (props: IProps) => {
         }}>
             Delete
         </Button>
-        </div>
+        </React.Fragment>
     }
     // const renderContent = (record: any) => {
         
