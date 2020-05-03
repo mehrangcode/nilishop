@@ -1,20 +1,5 @@
 .itemWrapper {
     padding: 5px;
-    input {
-        width: 100%;
-        margin: 0;
-        box-sizing: border-box;
-        height: 30px;
-        border: 1px solid #999;
-        border-radius: 5px;
-    }
-    input:focus {
-        border-color: blue;
-        box-shadow: 0 0 5px rgb(90, 156, 175);
-    }
-    label {
-        font-size: 12px;
-    }
     textarea {
         width: 100%;
         min-height: 200px;
@@ -30,8 +15,20 @@
 .rdw-image-modal-size-input {
 	width: 30px !important;
 }
-
+input {
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    height: 30px;
+    border: 1px solid #999;
+    border-radius: 5px;
+}
+input:focus {
+    border-color: blue;
+    box-shadow: 0 0 5px rgb(90, 156, 175);
+}
 label {
+    font-size: 13px;
 	font-style: italic;
 	margin: 5px;
 	display: inline-block;
