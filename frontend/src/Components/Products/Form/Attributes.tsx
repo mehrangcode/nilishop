@@ -4,7 +4,6 @@ import * as ProductActions from "../../../actions/Products";
 import { IFormProps } from "../../../Utils/FormController";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { RouteComponentProps } from "react-router";
-import Select from "../../../Utils/Select/Select";
 import Input from "../../../Utils/Input";
 import NumberInput from "../../../Utils/Input/NumberInput";
 
@@ -24,7 +23,7 @@ interface IAttr {
     attrType: string;
 
 }
-const Attribiutes: React.FC<IProps> = (props: IProps) => {
+const Attributes: React.FC<IProps> = (props: IProps) => {
 
     const [attrs, modifyAttrs] = useState<IAttr[]>([])
     const [attrType, setAttrType] = useState<string>("")
@@ -64,7 +63,7 @@ const Attribiutes: React.FC<IProps> = (props: IProps) => {
     }
     return (
         <div>
-            <h3>Attribiutes</h3>
+            <h3>Attributes</h3>
             {attrs.map((item: IAttr, i: number) => {
                 return <div className="row" key={item.id}>
                     <div className="col-3">
@@ -84,7 +83,7 @@ const Attribiutes: React.FC<IProps> = (props: IProps) => {
                         onChange={(value) => onchangeHandler(value, "amount", item.id )} />
                     </div>
                     <div className="col-3">
-                        <label htmlFor="attr-price">Price</label>
+                        <label htmlFor="attr-price">price balance</label>
                         <NumberInput id="attr-price" name="price" value={""+item.price} 
                         onChange={(value) => onchangeHandler(value, "price", item.id )} />
                     </div>
@@ -116,4 +115,4 @@ const Attribiutes: React.FC<IProps> = (props: IProps) => {
     )
 }
 
-export default Attribiutes
+export default Attributes
