@@ -1,39 +1,21 @@
-import React from "react";
-import { IApplicationState } from "../../store/state";
+import React, { useEffect } from "react";
+import { IApplicationState } from "../../../store/state";
 import { connect } from "react-redux";
-import { IProductState } from "../../actions/Products/model";
-import * as ProductActions from "../../actions/Products";
-import { FormCreator, IFormProps } from "../../Utils/FormController";
-import Button from "../../Utils/Buttons/Button";
+import { IProductState } from "../../../actions/Products/model";
+import * as ProductActions from "../../../actions/Products";
+import { FormCreator, IFormProps } from "../../../Utils/FormController";
+import Button from "../../../Utils/Buttons/Button";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { RouteComponentProps } from "react-router";
-import Select from "../../Utils/Select/Select";
-import Input from "../../Utils/Input";
-import ContentEditor from "../../Utils/Input/ContentEditor";
+import Select from "../../../Utils/Select/Select";
+import Input from "../../../Utils/Input";
+import ContentEditor from "../../../Utils/Input/ContentEditor";
 
 type IProps = IProductState & typeof ProductActions & IFormProps & RouteComponentProps<{ crudType: string }>;
-const CreateProducts = (props: IProps) => {
-    const onOk = (event: any) => {
-        event.preventDefault();
-        const values = props.onFormSubmit();
-        if (!values.err) {
-            // values.data.content = draftToHtml(values.data.content)
-            if (props.match.params.crudType.toLocaleLowerCase() === "create") {
-                props.createProduct(values.data, props.history)
-            } else if (props.match.params.crudType.toLocaleLowerCase() === "edit") {
-                props.editProduct(props.itemCRUD.data.id, values.data, props.history)
-            }
-        }
-    }
-    const onCancel = () => {
-        props.resetItem();
-        props.history.push("/adminPanel/products");
-    }
+const Introduction = (props: IProps) => {
     const { getFormItem } = props
     return (
         <div>
-            <h1>Create a new Product</h1>
-            <form onSubmit={onOk}>
 
                 <label htmlFor="title"> Title</label>
                 {getFormItem({
@@ -113,17 +95,8 @@ const CreateProducts = (props: IProps) => {
                         )}
                     </div>
                 </div>
-                <Button type="submit" >{
-                    props.match.params.crudType.toLocaleLowerCase() === "create" ?
-                        "Create" : "Update"
-                }</Button>
-                <Button type="button" onClick={onCancel}>Cancel</Button>
-            </form>
         </div>
     )
 }
 
-export default connect(
-    (state: IApplicationState) => state.product,
-    ProductActions,
-)(FormCreator(CreateProducts));
+export default Introduction;
