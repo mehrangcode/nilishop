@@ -25,7 +25,7 @@ const Specifications: React.FC<IProps> = (props: IProps) => {
 
     const addANewAttr = () => {
         const newSpec = [...specs];
-        newSpec.push({
+        newSpec.unshift({
             id: "" + new Date().getTime(),
             title: "",
             description: "",
@@ -53,6 +53,9 @@ const Specifications: React.FC<IProps> = (props: IProps) => {
     return (
         <div>
             <h3>Specifications</h3>
+            <div>
+                <button type="button" onClick={addANewAttr}>Add new Item</button>
+            </div>
             {specs.map((item: ISpec) => {
                 return <div className="row" key={item.id}>
                     <div className="col-5">
@@ -81,9 +84,6 @@ const Specifications: React.FC<IProps> = (props: IProps) => {
                 </div>
             })}
 
-            <div>
-                <button type="button" onClick={addANewAttr}>Add new Item</button>
-            </div>
         </div>
     )
 }

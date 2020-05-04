@@ -30,7 +30,7 @@ const Attributes: React.FC<IProps> = (props: IProps) => {
 
     const addANewAttr = () => {
         const newAttr = [...attrs];
-        newAttr.push({
+        newAttr.unshift({
             id: "" + new Date().getTime(),
             title: "",
             description: "",
@@ -64,6 +64,9 @@ const Attributes: React.FC<IProps> = (props: IProps) => {
     return (
         <div>
             <h3>Attributes</h3>
+            <div>
+                <button type="button" onClick={addANewAttr}>Add new Attribiute</button>
+            </div>
             {attrs.map((item: IAttr, i: number) => {
                 return <div className="row" key={item.id}>
                     <div className="col-3">
@@ -107,10 +110,6 @@ const Attributes: React.FC<IProps> = (props: IProps) => {
 
                 </div>
             })}
-            
-            <div>
-                <button type="button" onClick={addANewAttr}>Add new Attribiute</button>
-            </div>
         </div>
     )
 }
