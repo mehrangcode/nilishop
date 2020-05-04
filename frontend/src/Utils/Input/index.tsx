@@ -7,6 +7,7 @@ interface IProps {
     placeholder?: string;
     className?: string;
     initialvalue?: string;
+    value?: string;
     onChange?: (value: string) => void;
 }
 const Input = (props: IProps) => {
@@ -36,7 +37,7 @@ const Input = (props: IProps) => {
     return (
         <input
             className={props.className ? props.className : "input"}
-            value={inputValue}
+            value={props.value ? props.value : inputValue}
             onChange={onchangeHandler}
             id={props.id}
             type={props.type ? props.type : "text"}
