@@ -92,7 +92,6 @@ const Attribiutes: React.FC<IProps> = (props: IProps) => {
                         
                         <button 
                         className="removeButton"
-                        style={{marginTop: "35px"}}
                         type="button" 
                         onClick={() => removeItem(item.id)}>
                         X
