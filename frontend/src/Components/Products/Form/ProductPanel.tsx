@@ -8,7 +8,8 @@ import Button from "../../../Utils/Buttons/Button";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { RouteComponentProps } from "react-router";
 import Introduction from "./Introduction";
-import Attribiutes from "./Attribiutes";
+import Attributes from "./Attributes";
+import Specifications from "./Specifications";
 
 type IProps = IProductState & typeof ProductActions & IFormProps & RouteComponentProps<{ crudType: string }>;
 
@@ -59,7 +60,7 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
                     <div
                         className={step === 2 ? "tabHeader tabActive" : "tabHeader"}
                         onClick={() => showStep(2)}>
-                        Attribiutes
+                        Attributes
                 </div>
                     <div
                         className={step === 3 ? "tabHeader tabActive" : "tabHeader"}
@@ -93,10 +94,10 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
                             <h3>Gallery</h3>
                         </div>
                         <div className="panelItem" style={step === 2 ? { display: "block" } : { display: "none" }}>
-                            <Attribiutes {...props} onChange={(value) => console.log("Change: ", value)} />
+                            <Attributes {...props} onChange={(value) => console.log("Change: ", value)} />
                         </div>
                         <div className="panelItem" style={step === 3 ? { display: "block" } : { display: "none" }}>
-                            <h3>Specifications</h3>
+                           <Specifications {...props} onChange={(value) => console.log("Change: ", value)} />
                         </div>
                         <div className="panelItem" style={step === 4 ? { display: "block" } : { display: "none" }}>
                             <h3>Price management</h3>
