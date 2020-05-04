@@ -40,15 +40,16 @@ export const Table = (props: IProps) => {
                                 }
                                 if(child.props.dataName){
                                     let prop:string = child.props.dataName;
-                                    // let strArray: string[] = [];
-                                    let itemProp = "";
+                                    let itemProp = item[prop] ? item[prop] : "";
                                     if(prop.includes(".")){
-                                       const strArray = prop.split(".")
-                                       if( itemProp = item[strArray[0]]){
-                                           itemProp = item[strArray[0]][strArray[1]]
+                                       const strArray: any = prop.split(".")
+                                       itemProp = item[strArray[0]]
+                                       for (let i = 1; i < strArray.length; i++) {
+                                           if(itemProp[strArray[i]]){
+                                               itemProp = itemProp[strArray[i]]
+                                           }
+                                           
                                        }
-                                    } else {
-                                        itemProp = item[prop]
                                     }
                                     if (itemProp) {
                                         let str = itemProp;
