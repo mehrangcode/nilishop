@@ -1,10 +1,7 @@
-import React, { useEffect } from "react";
-import { IApplicationState } from "../../../store/state";
-import { connect } from "react-redux";
+import React from "react";
 import { IProductState } from "../../../actions/Products/model";
 import * as ProductActions from "../../../actions/Products";
-import { FormCreator, IFormProps } from "../../../Utils/FormController";
-import Button from "../../../Utils/Buttons/Button";
+import { IFormProps } from "../../../Utils/FormController";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { RouteComponentProps } from "react-router";
 import Select from "../../../Utils/Select/Select";
