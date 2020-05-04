@@ -24,7 +24,7 @@ const CreateCategory = (props: IProps) => {
         }
 
     }
-    const onCancel= () => {
+    const onCancel = () => {
         props.resetItem();
         props.history.push("/adminpanel/category")
     }
@@ -34,33 +34,38 @@ const CreateCategory = (props: IProps) => {
 
             <h1>Create Category</h1>
             <form onSubmit={onOk}>
-                <label htmlFor="title">Title</label>
-                {getFormItem({
-                    name: "title",
-                    initialvalue: props.itemCRUD.data ? props.itemCRUD.data.title : "",
-                    rules: [
-                        {
-                            required: true,
-                            msg: "must Fill"
-                        }
-                    ]
-                },
-                    <Input id="title" placeholder="Category Title" />
-                )}
-                <label htmlFor="description">Description</label>
-                {getFormItem({
-                    name: "description",
-                    initialvalue: props.itemCRUD.data ? props.itemCRUD.data.description : "",
-                    rules: [
-                        {
-                            required: true,
-                            msg: "must Fill"
-                        }
-                    ]
-                },
-                    <Input id="description" placeholder="Category Description" />
-                )}
                 <div className="row">
+                    <div className="col-6">
+                        <label htmlFor="title">Title</label>
+                        {getFormItem({
+                            name: "title",
+                            initialvalue: props.itemCRUD.data ? props.itemCRUD.data.title : "",
+                            rules: [
+                                {
+                                    required: true,
+                                    msg: "must Fill"
+                                }
+                            ]
+                        },
+                            <Input id="title" placeholder="Category Title" />
+                        )}
+
+                    </div>
+                    <div className="col-6">
+                        <label htmlFor="description">Description</label>
+                        {getFormItem({
+                            name: "description",
+                            initialvalue: props.itemCRUD.data ? props.itemCRUD.data.description : "",
+                            rules: [
+                                {
+                                    required: true,
+                                    msg: "must Fill"
+                                }
+                            ]
+                        },
+                            <Input id="description" placeholder="Category Description" />
+                        )}
+                    </div>
                     <div className="col-6">
                         <label htmlFor="status">Status</label>
                         {getFormItem({
@@ -78,10 +83,11 @@ const CreateCategory = (props: IProps) => {
                                 { id: 1, title: "publish" }
                             ]} />
                         )}
+
                     </div>
                 </div>
-                        <Button type="submit">Submit</Button>
-                        <Button type="button" onClick={onCancel}>Cancel</Button>
+                <Button type="submit">Submit</Button>
+                <Button type="button" onClick={onCancel}>Cancel</Button>
             </form>
         </div>
     )
