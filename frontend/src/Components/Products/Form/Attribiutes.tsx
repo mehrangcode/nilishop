@@ -6,6 +6,7 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { RouteComponentProps } from "react-router";
 import Select from "../../../Utils/Select/Select";
 import Input from "../../../Utils/Input";
+import NumberInput from "../../../Utils/Input/NumberInput";
 
 type IProps = {
     onChange: (value: IAttr[]) => void;
@@ -79,12 +80,12 @@ const Attribiutes: React.FC<IProps> = (props: IProps) => {
 
                     <div className="col-3">
                         <label htmlFor="attr-amount">Amount</label>
-                         <Input id="attr-amount" name="amount" value={""+item.amount} 
+                         <NumberInput id="attr-amount" name="amount" value={""+item.amount} 
                         onChange={(value) => onchangeHandler(value, "amount", item.id )} />
                     </div>
                     <div className="col-3">
                         <label htmlFor="attr-price">Price</label>
-                        <Input id="attr-price" name="price" value={""+item.price} 
+                        <NumberInput id="attr-price" name="price" value={""+item.price} 
                         onChange={(value) => onchangeHandler(value, "price", item.id )} />
                     </div>
                     <div className="col-9">
