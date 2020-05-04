@@ -7,6 +7,7 @@
     overflow-x: hidden;
 	transition: all 250ms;
 	margin-right: -18px;
+	z-index: 300;
 }
 
 .Sidebar a {
@@ -34,6 +35,7 @@
 	right: 30px;
 	font-size: 30px;
 	cursor: pointer;
+	z-index: 301;
 }
 
 .Sidebar.sidebarActive {
