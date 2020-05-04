@@ -68,5 +68,22 @@ $app->post('/api/category', "CategoryController:create");
 $app->put('/api/category/{categoryId}', "CategoryController:update");
 $app->delete('/api/category/{categoryId}', "CategoryController:delete");
 
+//Attributes
+$app->get('/api/attrType', "AttributeController:index");
+$app->get('/api/attrTypedropDown', "AttributeController:dropDown");
+$app->get('/api/attrType/{attrTypeId}/attrs', "AttributeController:get_AttrNames");
+// $app->get('/api/attrType/{attrTypeId}', "AttributeController:findOne");
+$app->post('/api/attrType', "AttributeController:create");
+$app->put('/api/attrType/{attrTypeId}', "AttributeController:update");
+$app->delete('/api/attrType/{attrTypeId}', "AttributeController:delete");
+
+//Attributes
+$app->get('/api/attrName', "AttributeController:getAllAttrName");
+$app->get('/api/attrNamedropDown', "AttributeController:dropDownAttrName");
+$app->get('/api/attrName/{attrNameId}', "AttributeController:findOneAttrName");
+$app->post('/api/attrName', "AttributeController:createAttrName");
+$app->put('/api/attrName/{attrNameId}', "AttributeController:updateAttrName");
+$app->delete('/api/attrName/{attrNameId}', "AttributeController:deleteAttrName");
+
 //Admin Panel
 $app->get('/api/adminPanel', "AdminPanelController:index");

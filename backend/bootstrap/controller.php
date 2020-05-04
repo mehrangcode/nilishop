@@ -35,3 +35,6 @@ $container['PermissionController'] = function($container) {
 $container['AdminPanelController'] = function($container) {
     return new \App\Controllers\AdminPanelController($container);
 };
+$container['AttributeController'] = function($container) {
+    return new \App\Controllers\AttributeController($container);
+};
