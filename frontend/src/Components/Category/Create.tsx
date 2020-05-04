@@ -35,7 +35,7 @@ const CreateCategory = (props: IProps) => {
             <h1>Create Category</h1>
             <form onSubmit={onOk}>
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-6 mr-6">
                         <label htmlFor="title">Title</label>
                         {getFormItem({
                             name: "title",
@@ -51,7 +51,8 @@ const CreateCategory = (props: IProps) => {
                         )}
 
                     </div>
-                    <div className="col-6">
+                    {/* <div className="col-6"></div> */}
+                    <div className="col-6 mr-6">
                         <label htmlFor="description">Description</label>
                         {getFormItem({
                             name: "description",
@@ -66,7 +67,8 @@ const CreateCategory = (props: IProps) => {
                             <Input id="description" placeholder="Category Description" />
                         )}
                     </div>
-                    <div className="col-6">
+                    {/* <div className="col-6"></div> */}
+                    <div className="col-6 mr-6">
                         <label htmlFor="status">Status</label>
                         {getFormItem({
                             name: "status",
