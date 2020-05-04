@@ -26,6 +26,7 @@ interface IAttr {
 const Attribiutes: React.FC<IProps> = (props: IProps) => {
 
     const [attrs, modifyAttrs] = useState<IAttr[]>([])
+    const [attrType, setAttrType] = useState<string>("")
 
     const addANewAttr = () => {
         const newAttr = [...attrs];
@@ -35,7 +36,7 @@ const Attribiutes: React.FC<IProps> = (props: IProps) => {
             description: "",
             amount: 0,
             price: 0,
-            attrType: ""
+            attrType
         });
         modifyAttrs(newAttr)
         props.onChange(newAttr)
@@ -55,6 +56,9 @@ const Attribiutes: React.FC<IProps> = (props: IProps) => {
            newAttrs[attrIndex] = attr
            modifyAttrs(newAttrs)
            props.onChange(newAttrs)
+        }
+        if(name === "attrType") {
+            setAttrType(value)
         }
     }
     return (
