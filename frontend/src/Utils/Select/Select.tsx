@@ -82,7 +82,7 @@ class Select extends React.Component<IProps, IState> {
         const valueProp = this.props.valueProp ? this.props.valueProp : "id";
         let { displayValue, showInput } = this.state
         if (this.state.value !== "" && this.state.optionList) {
-            const displayValueItem = this.state.optionList && this.state.optionList.filter(item => item[valueProp].toString() === this.state.value)[0];
+            const displayValueItem = this.state.optionList && this.state.optionList.filter(item => item[valueProp].toString() === this.state.value.toString())[0];
             displayValue = displayValueItem ? displayValueItem[displayProp] : ""
         }
         showInput = false;
