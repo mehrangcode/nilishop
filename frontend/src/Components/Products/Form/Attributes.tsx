@@ -77,7 +77,7 @@ const Attributes: React.FC<IProps> = (props: IProps) => {
                 <button type="button" onClick={addANewAttr}>Add new Attribiute</button>
             </div>
             {attrs.map((item: IAttr, i: number) => {
-                return <div className="row" key={item.id}>
+                return <div className="row attributeItem" key={item.id}>
                     <div className="col-3">
                         <label htmlFor="attr-type">Attribiute Type</label>
                         <Select url="/attrTypedropDown" initialvalue={item.attrType}  
@@ -125,19 +125,12 @@ const Attributes: React.FC<IProps> = (props: IProps) => {
                         </button>
                         </div>
                     )}
-                    <div className="col-1">
-                        
                         <button 
                         className="removeButton"
                         type="button" 
                         onClick={() => removeItem(item.id)}>
                         X
                         </button>
-                    </div>
-                    <div className="col">
-                        <hr />
-                    </div>
-
                 </div>
             })}
         </div>

@@ -42,9 +42,12 @@ label {
 	border: 1px solid red;
 	color: red;
 	cursor: pointer;
-    margin-top: 25px;
-    background-color: #fff;
-    transition: all 250ms;
+	margin-top: 25px;
+	background-color: #fff;
+	transition: all 250ms;
+	position: absolute;
+	right: 8px;
+	top: -22px;
 }
 
 .removeButton:hover {
@@ -58,4 +61,8 @@ label {
 	color: white;
 	background-color: red;
 	transform: rotate(90deg);
+}
+
+button {
+	min-height: 30px;
 }

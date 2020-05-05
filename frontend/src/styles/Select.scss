@@ -40,6 +40,7 @@
     overflow-y: auto;
     transition: all 200ms;
     background-color: white;
+    z-index: 2;
 }
 .selectOption {
     height: 30px;
