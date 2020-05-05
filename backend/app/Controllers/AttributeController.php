@@ -72,7 +72,7 @@ class AttributeController extends Controller
         foreach ($attrNames as $product) {
             $data[] = $product;
         }
-    return $response->withStatus(200)->withJson($data);
+    return $response->withStatus(200)->withJson(['data' => $data]);
 }
 
 
