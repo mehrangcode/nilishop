@@ -168,9 +168,11 @@ class Select extends React.Component<IProps, IState> {
                 const valueProp = this.props.valueProp ? this.props.valueProp : "id";
                 const matchData = this.state.searchValue.toLocaleLowerCase().trim()
                 const datas = this.state.optionList.filter(data => data[displayProp].toLocaleLowerCase().trim().match(matchData));
-                const id = datas[this.state.activeItem][valueProp];
-                const targetData = datas.filter(data => data[valueProp].toString() === id.toString())[0]
-                this.onSelectHandler(targetData)
+                if(datas[this.state.activeItem]){
+                    const id = datas[this.state.activeItem][valueProp];
+                    const targetData = datas.filter(data => data[valueProp].toString() === id.toString())[0]
+                    this.onSelectHandler(targetData)
+                }
             }
         }
     }
