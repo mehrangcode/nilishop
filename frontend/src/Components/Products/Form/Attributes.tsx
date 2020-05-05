@@ -22,6 +22,7 @@ interface IAttr {
     amount: number;
     price: number;
     attrType: string;
+    moreDetails: boolean;
 
 }
 const Attributes: React.FC<IProps> = (props: IProps) => {
@@ -37,6 +38,7 @@ const Attributes: React.FC<IProps> = (props: IProps) => {
             description: "",
             amount: 0,
             price: 0,
+            moreDetails: false,
             attrType
         });
         modifyAttrs(newAttr)
@@ -47,19 +49,25 @@ const Attributes: React.FC<IProps> = (props: IProps) => {
         modifyAttrs(newAttr)
         props.onChange(newAttr)
     }
-    const onchangeHandler = (value: string, name: string, id: string) => {
+    const onchangeHandler = (value: string | boolean, name: string, id: string) => {
 
         const newAttrs: IAttr[] = JSON.parse(JSON.stringify(attrs))
         const attrIndex = newAttrs.findIndex(x => x.id === id)
         if(attrIndex >= 0){
            const attr: any = {...newAttrs[attrIndex]}
            attr[name] = value
+        //    if(name === "moreDetails" && value === false) {
+        //       attr.description = "";
+        //       attr.price = 0; 
+        //       attr.amount = 0; 
+        //    }
            newAttrs[attrIndex] = attr
            modifyAttrs(newAttrs)
            props.onChange(newAttrs)
         }
+
         if(name === "attrType") {
-            setAttrType(value)
+            setAttrType((value as string))
         }
     }
     return (
@@ -81,7 +89,9 @@ const Attributes: React.FC<IProps> = (props: IProps) => {
                         onChange={(value: string) => onchangeHandler(value, "title", item.id )} />
                     </div>
 
-                    <div className="col-3">
+                    {item.moreDetails ? (
+                        <React.Fragment>
+                            <div className="col-3">
                         <label htmlFor="attr-amount">Amount</label>
                          <NumberInput id="attr-amount" name="amount" value={""+item.amount} 
                         onChange={(value) => onchangeHandler(value, "amount", item.id )} />
@@ -96,6 +106,25 @@ const Attributes: React.FC<IProps> = (props: IProps) => {
                         <Input id="attr-description" name="description" value={item.description} 
                         onChange={(value) => onchangeHandler(value, "description", item.id )} />
                     </div>
+                    <div className="col-1">
+                        <label htmlFor=""> &nbsp; </label>
+                        <button 
+                        type="button"
+                        onClick={() => onchangeHandler(false, "moreDetails", item.id)}>
+                        Hide
+                        </button>
+                        </div>
+                        </React.Fragment>
+                    ) : (
+                        <div className="col-2">
+                        <label htmlFor=""> &nbsp; </label>
+                        <button 
+                        type="button"
+                        onClick={() => onchangeHandler(true, "moreDetails", item.id)}>
+                        More Details
+                        </button>
+                        </div>
+                    )}
                     <div className="col-1">
                         
                         <button 
