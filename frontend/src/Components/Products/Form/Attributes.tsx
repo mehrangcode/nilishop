@@ -6,6 +6,7 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { RouteComponentProps } from "react-router";
 import Input from "../../../Utils/Input";
 import NumberInput from "../../../Utils/Input/NumberInput";
+import Select from "../../../Utils/Select/Select";
 
 type IProps = {
     onChange: (value: IAttr[]) => void;
@@ -71,13 +72,13 @@ const Attributes: React.FC<IProps> = (props: IProps) => {
                 return <div className="row" key={item.id}>
                     <div className="col-3">
                         <label htmlFor="attr-type">Attribiute Type</label>
-                        <Input id="attr-type" name="attrType"  value={item.attrType} 
-                        onChange={(value) => onchangeHandler(value, "attrType", item.id )} />
+                        <Select url="/attrTypedropDown" initialvalue={item.attrType}  
+                        onChange={(value: string) => onchangeHandler(value, "attrType", item.id )} />
                     </div>
                     <div className="col-3">
                         <label htmlFor="attr-title">Title</label>
-                        <Input id="attr-title" name="title" value={item.title} 
-                        onChange={(value) => onchangeHandler(value, "title", item.id )} />
+                        <Select url={`/attrType/${item.attrType}/attrs`} initialvalue={item.title}  
+                        onChange={(value: string) => onchangeHandler(value, "title", item.id )} />
                     </div>
 
                     <div className="col-3">

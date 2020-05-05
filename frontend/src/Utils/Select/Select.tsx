@@ -76,6 +76,21 @@ class Select extends React.Component<IProps, IState> {
                 this.getChildren()
             }))
     }
+    componentDidUpdate(prevProps: { url: string; }) {
+        if(this.props.url){
+            if(this.props.url !== prevProps.url){
+                this.setState({
+                    displayValue: "",
+                    value: "",
+                    searchValue: "",
+                    activeItem: 0,
+                }, () => {
+                    this.props.onChange("")
+                })
+                this.getOptions(this.props.url)
+            }
+        }
+    }
 
     hideOption = () => {
         const displayProp = this.props.displayProp ? this.props.displayProp : "title";
