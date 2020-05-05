@@ -18,6 +18,7 @@ export type IFormProps = {
     getFormItem: (props: IFormItem, comp: Element | React.ComponentType | JSX.Element) => Element;
     getFormValues?: () => object;
     resetForm?: () => void;
+    getFildValue:(filedName: string) => string;
     onFormSubmit: () => {data: {[key: string]: string}, err: {[key: string]: string}}
 };
 
@@ -111,6 +112,10 @@ export const FormCreator = <P extends IFormProps>(Component: React.ComponentType
             return this.state
         }
 
+        getFildValue = (name: string) =>{
+            console.log("getFildValue: ", name, this.state.data[name])
+            return this.state.data[name]
+        }
         resetForm = () => {
             this.setState({
                 data: {},
@@ -162,6 +167,7 @@ export const FormCreator = <P extends IFormProps>(Component: React.ComponentType
                 getFormItem={this.formItem}
                 getFormValues={this.getFormValues}
                 onFormSubmit={this.onFormSubmit}
+                getFildValue={this.getFildValue}
                 resetForm={this.resetForm} />;
         }
     };
