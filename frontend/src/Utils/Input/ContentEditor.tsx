@@ -3,7 +3,7 @@ import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import Axios from "axios";
 import { urlGeneral, urlVersion } from "../../Utils/General/GConst";
-import { EditorState, ContentState, convertFromHTML } from 'draft-js';
+import { EditorState, convertToRaw, ContentState, convertFromHTML } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 
 interface IProps {
@@ -16,28 +16,32 @@ interface IProps {
     onChange?: (value: string) => void;
 }
 const ContentEditor = (props: IProps) => {
-    const [inputValue, setValue] = useState<string | undefined>(undefined)
+    const [inputValue, setValue] = useState<any>(props.initialvalue ? 
+        EditorState.createWithContent(
+        ContentState.createFromBlockArray(
+            convertFromHTML(props.initialvalue)
+        )
+    ) : EditorState.createEmpty())
     useEffect(() => {
-        if (props.initialvalue) {
-            setValue(
-                EditorState.createWithContent(
-                    ContentState.createFromBlockArray(
-                        convertFromHTML(props.initialvalue)
-                    )
-                )
-            )
-            if(props.onChange){
-                props.onChange(props.initialvalue)
+        setTimeout(() => {
+            if (props.initialvalue) {
+                if (props.onChange) {
+                    props.onChange(props.initialvalue)
+                }
             }
-        }
+        }, 500);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const onContentStateChange = (contentState: any) => {
         setValue(contentState)
+        if (props.onChange) {
+            props.onChange(draftToHtml(
+                convertToRaw(contentState.getCurrentContent())));
+        }
     };
-    
+
 
     const uploadImageCallBack = async (file: any) => {
         var formData = new FormData();
@@ -58,8 +62,8 @@ const ContentEditor = (props: IProps) => {
 
             editorState={inputValue}
             onEditorStateChange={onContentStateChange}
-            onChange={(value:any )=> {
-                if(props.onChange){
+            onChange={(value: any) => {
+                if (props.onChange) {
                     props.onChange(draftToHtml(value))
                 }
             }}
