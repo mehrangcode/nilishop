@@ -36,11 +36,11 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
         const values = props.onFormSubmit();
         console.log("values:" , values)
         if (!values.err) {
-            // values.data.content = draftToHtml(values.data.content)
-            if (props.match.params.crudType.toLocaleLowerCase() === "create") {
+            // values.data.content = draftToHtml(values.data.content) 
                 const val: any = values.data;
                 val.attributes = attributes
                 val.specifications = specifications
+            if (props.match.params.crudType.toLocaleLowerCase() === "create") {
                 props.createProduct(values.data, props.history)
             } else if (props.match.params.crudType.toLocaleLowerCase() === "edit") {
                 props.editProduct(props.itemCRUD.data.id, values.data, props.history)

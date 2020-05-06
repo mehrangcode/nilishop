@@ -153,8 +153,50 @@ public function deleteAttrName ($request, $response, $attrNameId) {
     $CreateAttribute = Attribute::insert($data);
 
     return $CreateAttribute;
-    
+ }
+ public function updateAttribute ($request, $productId) {
+    $attributes = $request->getParam('attributes');
+    $data = array();
+    try {
+        foreach ($attributes as $attribute) {
 
+            if(strpos($attribute['id'], 'attr-') !== false){
+                $data[] = [
+                    'description' => $attribute['description'],
+                    'product_id' => $productId,
+                    'attr_type_id' => $attribute['attr_type_id'],
+                    'attr_name_id' => $attribute['attr_name_id'],
+                    'price_scale' => $attribute['price_scale'],
+                    'stock' => $attribute['stock']
+                ];
+            } else {
+                Attribute::where('id', $attribute['id'])->update([
+                    'description' => $attribute['description'],
+                    'product_id' => $productId,
+                    'attr_type_id' => $attribute['attr_type_id'],
+                    'attr_name_id' => $attribute['attr_name_id'],
+                    'price_scale' => $attribute['price_scale'],
+                    'stock' => $attribute['stock']
+                ]);
+            }
+        // Attribute::updateOrCreate(
+        //     [
+        //         'id' => $attribute['id']
+        //     ],[
+        //     'description' => $attribute['description'],
+        //     'product_id' => $productId,
+        //     'attr_type_id' => $attribute['attr_type_id'],
+        //     'attr_name_id' => $attribute['attr_name_id'],
+        //     'price_scale' => $attribute['price_scale'],
+        //     'stock' => $attribute['stock']
+        // ]);
+    }
+    
+    $CreateAttribute = Attribute::insert($data);
+    return true;
+    } catch (\Throwable $th) {
+        return $th;
+    }
     
  }
 

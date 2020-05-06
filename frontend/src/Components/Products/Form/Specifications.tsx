@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IProductState } from "../../../actions/Products/model";
 import * as ProductActions from "../../../actions/Products";
 import { IFormProps } from "../../../Utils/FormController";
@@ -21,21 +21,27 @@ interface ISpec {
 }
 const Specifications: React.FC<IProps> = (props: IProps) => {
 
-    const [specs, modifyAttrs] = useState<ISpec[]>([])
-
+    const [specs, modifySpecs] = useState<ISpec[]>([])
+    
+    useEffect(() => {
+        if(props.itemCRUD.data){
+            modifySpecs(props.itemCRUD.data.specifications)
+            props.onChange(props.itemCRUD.data.specifications)
+        }
+    }, [])
     const addANewAttr = () => {
         const newSpec = [...specs];
         newSpec.unshift({
-            id: "" + new Date().getTime(),
+            id: "spec-" + new Date().getTime(),
             title: "",
             description: "",
         });
-        modifyAttrs(newSpec)
+        modifySpecs(newSpec)
         props.onChange(newSpec)
     }
     const removeItem = (id: string) => {
         const newSpec: ISpec[] = specs.filter(x => x.id !== id);
-        modifyAttrs(newSpec)
+        modifySpecs(newSpec)
         props.onChange(newSpec)
     }
     const onchangeHandler = (value: string, name: string, id: string) => {
@@ -46,7 +52,7 @@ const Specifications: React.FC<IProps> = (props: IProps) => {
             const spec: any = { ...newSpecs[specIndex] }
             spec[name] = value
             newSpecs[specIndex] = spec
-            modifyAttrs(newSpecs)
+            modifySpecs(newSpecs)
             props.onChange(newSpecs)
         }
     }

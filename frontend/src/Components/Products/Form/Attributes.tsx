@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IProductState } from "../../../actions/Products/model";
 import * as ProductActions from "../../../actions/Products";
 import { IFormProps } from "../../../Utils/FormController";
@@ -30,10 +30,24 @@ const Attributes: React.FC<IProps> = (props: IProps) => {
     const [attrs, modifyAttrs] = useState<IAttr[]>([])
     const [attr_type_id, setAttrType] = useState<string>("")
 
+    useEffect(() => {
+        if(props.itemCRUD.data){
+            const newAttrs = props.itemCRUD.data.attributes.map((attr: IAttr) => {
+                attr.moreDetails = false
+                if(attr.description || attr.price_scale || attr.stock) {
+                    attr.moreDetails = true
+                }
+                return attr;
+            })
+            modifyAttrs(newAttrs)
+            props.onChange(newAttrs)
+        }
+    }, [])
+
     const addANewAttr = () => {
         const newAttr = [...attrs];
         newAttr.unshift({
-            id: "" + new Date().getTime(),
+            id: "attr-" + new Date().getTime(),
             attr_name_id: "",
             description: "",
             stock: 0,

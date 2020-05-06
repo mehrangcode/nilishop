@@ -66,6 +66,25 @@ class ProductController extends Controller
             $product->category_id = $request->getParam('category_id') ? $request->getParam('category_id') : 1; 
             $product->price = $request->getParam('price');
             $product->save();
+
+            if(!$product){
+                return $response->withStatus(500)->withJson([
+                    "message" => "SomeThing was Wrong" ]);
+            }
+            $attribute = AttributeController::updateAttribute($request, $product->id);
+            if(!$attribute) {
+                return $response->withStatus(500)->withJson([
+                    "message" => " updateAttribute SomeThing was Wrong" ]);
+            }
+            $specification = $this->updateSpecification($request, $product->id);
+            if(!$specification) {
+                return $response->withStatus(500)->withJson([
+                    "message" => "SomeThing was Wrong with updateSpecification" ]);
+            }
+            return $response->withStatus(200)->withJson([
+                "message" => "Create Product Successful from updateAttribute", 
+                'id' => $product->id,
+                ]);
         return $response->withStatus(200)->withJson(["message" => "Product was updated Successful"]);
     }
     public function delete ($request, $response, $productId) {
@@ -105,6 +124,27 @@ class ProductController extends Controller
     
         return $CreateSpecification;    
     }
+
+    public function updateSpecification ($request, $productId) {
+        try {
+            $specifications = $request->getParam('specifications');
+            foreach ($specifications as $specification) {
+            Specification::updateOrCreate(
+                [
+                    'id' => $specification['id']
+                ],[
+                    'title' => $specification['title'],
+                    'description' => $specification['description'],
+                    'user_id' => $this->creatorId($request),
+                    'product_id' => $productId,
+                ]);
+        }
+        return true;
+        } catch (\Throwable $th) {
+            return $th;
+        }
+        
+     }
 
 
 }
