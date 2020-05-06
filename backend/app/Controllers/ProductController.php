@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use \App\Models\Product;
+use \App\Models\Specification;
 
 class ProductController extends Controller
 {
@@ -16,7 +17,7 @@ class ProductController extends Controller
         return $response->withStatus(200)->withJson($data);
     }
     public function findOne ($request, $response, $productId) {
-        $data = Product::where('id', $productId)->first();
+        $data = Product::with('attributes')->with('specifications')->where('id', $productId)->first();
         if(!$data){
             return $response->withStatus(400)->withJson(["message" => "product not found"]);
          }
@@ -38,6 +39,11 @@ class ProductController extends Controller
         }
         $attribute = AttributeController::CreateAttribute($request, $product->id);
         if(!$attribute) {
+            return $response->withStatus(500)->withJson([
+                "message" => "SomeThing was Wrong" ]);
+        }
+        $specification = $this->modifySpecifications($request, $product->id);
+        if(!$specification) {
             return $response->withStatus(500)->withJson([
                 "message" => "SomeThing was Wrong" ]);
         }
@@ -82,6 +88,22 @@ class ProductController extends Controller
                 $data[] = $product;
             }
         return $response->withStatus(200)->withJson($data);
+    }
+
+    public function modifySpecifications ($request, $productId) {
+        $specifications = $request->getParam('specifications');
+        $data = array();
+        foreach ($specifications as $specification) {
+            $data[] = [
+                'title' => $specification['title'],
+                'description' => $specification['description'],
+                'user_id' => $this->creatorId($request),
+                'product_id' => $productId,
+            ];
+        }
+        $CreateSpecification = Specification::insert($data);
+    
+        return $CreateSpecification;    
     }
 
 

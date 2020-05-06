@@ -25,4 +25,8 @@ class Product extends Model
     {
         return $this->hasMany(Attribute::class);
     }
+    public function specifications()
+    {
+        return $this->hasMany(Specification::class);
+    }
 }

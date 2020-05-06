@@ -57,7 +57,7 @@ const Specifications: React.FC<IProps> = (props: IProps) => {
                 <button type="button" onClick={addANewAttr}>Add new Item</button>
             </div>
             {specs.map((item: ISpec) => {
-                return <div className="row" key={item.id}>
+                return <div className="row attributeItem" key={item.id}>
                     <div className="col-5">
                         <label htmlFor="spec-title">Title</label>
                         <Input id="spec-title" name="title" value={item.title}
@@ -68,7 +68,6 @@ const Specifications: React.FC<IProps> = (props: IProps) => {
                         <Input id="spec-description" name="description" value={item.description}
                             onChange={(value) => onchangeHandler(value, "description", item.id)} />
                     </div>
-                    <div className="col-1">
 
                         <button
                             className="removeButton"
@@ -76,10 +75,6 @@ const Specifications: React.FC<IProps> = (props: IProps) => {
                             onClick={() => removeItem(item.id)}>
                             X
                         </button>
-                    </div>
-                    <div className="col">
-                        <hr />
-                    </div>
 
                 </div>
             })}

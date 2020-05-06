@@ -18,6 +18,7 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
 
     const [step, showStep] = useState<number>(0);
     const [attributes, modifyAttributes] = useState([]);
+    const [specifications, modifySpecifications] = useState([]);
     useEffect(() => {
         return () => {
             props.resetItem();
@@ -26,6 +27,9 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
 
     const attributesChangeHandler = (attrs: any) => {
         modifyAttributes(attrs)
+    }
+    const specificationssChangeHandler = (spec: any) => {
+        modifySpecifications(spec)
     }
     const onOk = (event: any) => {
         event.preventDefault();
@@ -36,6 +40,7 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
             if (props.match.params.crudType.toLocaleLowerCase() === "create") {
                 const val: any = values.data;
                 val.attributes = attributes
+                val.specifications = specifications
                 props.createProduct(values.data, props.history)
             } else if (props.match.params.crudType.toLocaleLowerCase() === "edit") {
                 props.editProduct(props.itemCRUD.data.id, values.data, props.history)
@@ -104,7 +109,7 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
                             <Attributes {...props} onChange={(value) => attributesChangeHandler(value)} />
                         </div>
                         <div className="panelItem" style={step === 3 ? { display: "block" } : { display: "none" }}>
-                           <Specifications {...props} onChange={(value) => console.log("Change: ", value)} />
+                           <Specifications {...props} onChange={(value) => specificationssChangeHandler(value)} />
                         </div>
                         <div className="panelItem" style={step === 4 ? { display: "block" } : { display: "none" }}>
                             <h3>Price management</h3>

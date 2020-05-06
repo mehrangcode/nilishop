@@ -152,7 +152,7 @@ public function deleteAttrName ($request, $response, $attrNameId) {
     }
     $CreateAttribute = Attribute::insert($data);
 
-    return ['CreateAttribute' => $CreateAttribute];
+    return $CreateAttribute;
     
 
     
