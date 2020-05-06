@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use \App\Models\Attrtype;
 use \App\Models\AttrName;
+use \App\Models\Attribute;
 
 class AttributeController extends Controller
 {
@@ -134,5 +135,27 @@ public function deleteAttrName ($request, $response, $attrNameId) {
         $attrName->delete();
     return $response->withStatus(200)->withJson(["message" => "attrName was deleted Successful"]);
 }
+
+
+ public function CreateAttribute ($request, $productId) {
+    $attributes = $request->getParam('attributes');
+    $data = array();
+    foreach ($attributes as $attribute) {
+        $data[] = [
+            'description' => $attribute['description'],
+            'product_id' => $productId,
+            'attr_type_id' => $attribute['attr_type_id'],
+            'attr_name_id' => $attribute['attr_name_id'],
+            'price_scale' => $attribute['price_scale'],
+            'stock' => $attribute['stock']
+        ];
+    }
+    $CreateAttribute = Attribute::insert($data);
+
+    return ['CreateAttribute' => $CreateAttribute];
+    
+
+    
+ }
 
 }

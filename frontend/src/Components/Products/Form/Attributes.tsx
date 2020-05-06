@@ -17,29 +17,29 @@ type IProps = {
     RouteComponentProps<{ crudType: string }>;
 interface IAttr {
     id: string;
-    title: string;
+    attr_name_id: string;
+    attr_type_id: string;
     description: string;
-    amount: number;
-    price: number;
-    attrType: string;
+    stock: number;
+    price_scale: number;
     moreDetails: boolean;
 
 }
 const Attributes: React.FC<IProps> = (props: IProps) => {
 
     const [attrs, modifyAttrs] = useState<IAttr[]>([])
-    const [attrType, setAttrType] = useState<string>("")
+    const [attr_type_id, setAttrType] = useState<string>("")
 
     const addANewAttr = () => {
         const newAttr = [...attrs];
         newAttr.unshift({
             id: "" + new Date().getTime(),
-            title: "",
+            attr_name_id: "",
             description: "",
-            amount: 0,
-            price: 0,
+            stock: 0,
+            price_scale: 0,
             moreDetails: false,
-            attrType
+            attr_type_id
         });
         modifyAttrs(newAttr)
         props.onChange(newAttr)
@@ -66,7 +66,7 @@ const Attributes: React.FC<IProps> = (props: IProps) => {
            props.onChange(newAttrs)
         }
 
-        if(name === "attrType") {
+        if(name === "attr_type_id") {
             setAttrType((value as string))
         }
     }
@@ -79,27 +79,27 @@ const Attributes: React.FC<IProps> = (props: IProps) => {
             {attrs.map((item: IAttr, i: number) => {
                 return <div className="row attributeItem" key={item.id}>
                     <div className="col-3">
-                        <label htmlFor="attr-type">Attribiute Type</label>
-                        <Select url="/attrTypedropDown" initialvalue={item.attrType}  
-                        onChange={(value: string) => onchangeHandler(value, "attrType", item.id )} />
+                        <label htmlFor="attr_type_id">Attribiute Type</label>
+                        <Select url="/attrTypedropDown" initialvalue={item.attr_type_id}  
+                        onChange={(value: string) => onchangeHandler(value, "attr_type_id", item.id )} />
                     </div>
                     <div className="col-3">
-                        <label htmlFor="attr-title">Title</label>
-                        <Select url={`/attrType/${item.attrType}/attrs`} initialvalue={item.title}  
-                        onChange={(value: string) => onchangeHandler(value, "title", item.id )} />
+                        <label htmlFor="attr-name_id">Title</label>
+                        <Select url={`/attrType/${item.attr_type_id}/attrs`} initialvalue={item.attr_name_id}  
+                        onChange={(value: string) => onchangeHandler(value, "attr_name_id", item.id )} />
                     </div>
 
                     {item.moreDetails ? (
                         <React.Fragment>
                             <div className="col-3">
-                        <label htmlFor="attr-amount">Amount</label>
-                         <NumberInput id="attr-amount" name="amount" value={""+item.amount} 
-                        onChange={(value) => onchangeHandler(value, "amount", item.id )} />
+                        <label htmlFor="stock">Amount</label>
+                         <NumberInput id="stock" name="stock" value={""+item.stock} 
+                        onChange={(value) => onchangeHandler(value, "stock", item.id )} />
                     </div>
                     <div className="col-3">
-                        <label htmlFor="attr-price">price balance</label>
-                        <NumberInput id="attr-price" name="price" value={""+item.price} 
-                        onChange={(value) => onchangeHandler(value, "price", item.id )} />
+                        <label htmlFor="price_scale">price balance</label>
+                        <NumberInput id="price_scale" name="price_scale" value={""+item.price_scale} 
+                        onChange={(value) => onchangeHandler(value, "price_scale", item.id )} />
                     </div>
                     <div className="col-9">
                         <label htmlFor="attr-description">Description</label>

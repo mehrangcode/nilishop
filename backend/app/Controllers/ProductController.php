@@ -23,7 +23,8 @@ class ProductController extends Controller
         return $response->withStatus(200)->withJson($data);
     }
     public function create ($request, $response) {
-        Product::create([
+
+        $product = Product::create([
             'title'=> $request->getParam('title'), 
             'lead'=> $request->getParam('lead'), 
             'content'=> $request->getParam('content'),
@@ -31,7 +32,21 @@ class ProductController extends Controller
             'price'=> $request->getParam('price'),
             'user_id' => $this->creatorId($request)
         ]);
-        return $response->withStatus(200)->withJson(["message" => "Create Product Successful"]);
+        if(!$product){
+            return $response->withStatus(500)->withJson([
+                "message" => "SomeThing was Wrong" ]);
+        }
+        $attribute = AttributeController::CreateAttribute($request, $product->id);
+        if(!$attribute) {
+            return $response->withStatus(500)->withJson([
+                "message" => "SomeThing was Wrong" ]);
+        }
+        return $response->withStatus(200)->withJson([
+            "message" => "Create Product Successful from CreateAttribute", 
+            'id' => $product->id,
+            'attr' => $tt
+            ]);
+        
     }
 
     public function update ($request, $response, $productId) {

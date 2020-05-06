@@ -14,10 +14,10 @@ class AttrName extends Model
         'user_id'
     ];
 
-    public function AttrType()
+    public function attrType()
     {        
         
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(AttrType::class);
 
     }
 }

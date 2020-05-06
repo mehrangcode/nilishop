@@ -17,12 +17,16 @@ type IProps = IProductState & typeof ProductActions & IFormProps & RouteComponen
 const ProductPanel: React.FC<IProps> = (props: IProps) => {
 
     const [step, showStep] = useState<number>(0);
+    const [attributes, modifyAttributes] = useState([]);
     useEffect(() => {
         return () => {
             props.resetItem();
         }
     }, []);
 
+    const attributesChangeHandler = (attrs: any) => {
+        modifyAttributes(attrs)
+    }
     const onOk = (event: any) => {
         event.preventDefault();
         const values = props.onFormSubmit();
@@ -30,6 +34,8 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
         if (!values.err) {
             // values.data.content = draftToHtml(values.data.content)
             if (props.match.params.crudType.toLocaleLowerCase() === "create") {
+                const val: any = values.data;
+                val.attributes = attributes
                 props.createProduct(values.data, props.history)
             } else if (props.match.params.crudType.toLocaleLowerCase() === "edit") {
                 props.editProduct(props.itemCRUD.data.id, values.data, props.history)
@@ -94,7 +100,8 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
                             <h3>Gallery</h3>
                         </div>
                         <div className="panelItem" style={step === 2 ? { display: "block" } : { display: "none" }}>
-                            <Attributes {...props} onChange={(value) => console.log("Change: ", value)} />
+
+                            <Attributes {...props} onChange={(value) => attributesChangeHandler(value)} />
                         </div>
                         <div className="panelItem" style={step === 3 ? { display: "block" } : { display: "none" }}>
                            <Specifications {...props} onChange={(value) => console.log("Change: ", value)} />
