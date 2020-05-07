@@ -32,7 +32,7 @@ const Attributes: React.FC<IProps> = (props: IProps) => {
 
     useEffect(() => {
         if(props.itemCRUD.data){
-            const newAttrs = props.itemCRUD.data.attributes.map((attr: IAttr) => {
+            const newAttrs = props.itemCRUD.data.attributes.reverse().map((attr: IAttr) => {
                 attr.moreDetails = false
                 if(attr.description || attr.price_scale || attr.stock) {
                     attr.moreDetails = true
