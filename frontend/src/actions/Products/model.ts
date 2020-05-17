@@ -11,6 +11,10 @@ export interface IProductState {
         data: any;
         open: string;
     }
+    gallery: {
+        loading: boolean;
+        data: any[];
+    }
 }
 
 interface IGetProductsList extends Action<string> {
@@ -66,6 +70,19 @@ interface IDeleteProductFail extends Action<string> {
 }
 
 
+//################################# GALLERY
+interface IGalleryFetch extends Action<string> {
+    type: ProductActionTypes.GalleryFetch
+}
+interface IGalleryFetchSuccess extends Action<string> {
+    type: ProductActionTypes.GalleryFetchSuccess
+    data: any[]
+}
+interface IGalleryFetchFail extends Action<string> {
+    type: ProductActionTypes.GalleryFetchFail
+}
+
+
 
 
 
@@ -84,3 +101,6 @@ export type ActionModel = IGetProductsList
     | IEditProduct
     | IEditProductSuccess
     | IEditProductFail
+    | IGalleryFetch
+    | IGalleryFetchSuccess
+    | IGalleryFetchFail

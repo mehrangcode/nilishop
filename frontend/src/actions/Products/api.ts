@@ -18,5 +18,8 @@ export const ProductApi = {
     deleteProducts : async (productId: string) => {
         return axios.delete(PanelUrl+ "/products/"+productId)
     },
+    getGalleryDir : async (path: string) => {
+        return axios.post(PanelUrl+ "/loader", {path})
+    },
     
 }

@@ -1,26 +1,31 @@
 export enum ProductActionTypes {
-    GetProductsList = "Panel/GetProductsList",
-    GetProductsListSuccess = "Panel/GetProductsListSuccess",
-    GetProductsListFail = "Panel/GetProductsListFail",
+    GetProductsList = "ProductActionTypes/GetProductsList",
+    GetProductsListSuccess = "ProductActionTypes/GetProductsListSuccess",
+    GetProductsListFail = "ProductActionTypes/GetProductsListFail",
 
     //Create Products
-    CreateProduct = "Panel/CreateProduct",
-    CreateProductSuccess = "Panel/CreateProductSuccess",
-    CreateProductFail = "Panel/CreateProductFail",
+    CreateProduct = "ProductActionTypes/CreateProduct",
+    CreateProductSuccess = "ProductActionTypes/CreateProductSuccess",
+    CreateProductFail = "ProductActionTypes/CreateProductFail",
 
     //GetProductData
-    GetProductData = "Panel/GetProductData",
-    GetProductDataSuccess = "Panel/GetProductDataSuccess",
-    GetProductDataFail = "Panel/GetProductDataFail",
+    GetProductData = "ProductActionTypes/GetProductData",
+    GetProductDataSuccess = "ProductActionTypes/GetProductDataSuccess",
+    GetProductDataFail = "ProductActionTypes/GetProductDataFail",
 
     //Edit Products
-    EditProduct = "Panel/EditProduct",
-    EditProductSuccess = "Panel/EditProductSuccess",
-    EditProductFail = "Panel/EditProductFail",
+    EditProduct = "ProductActionTypes/EditProduct",
+    EditProductSuccess = "ProductActionTypes/EditProductSuccess",
+    EditProductFail = "ProductActionTypes/EditProductFail",
 
     //Delete Products
-    DeleteProduct = "Panel/DeleteProduct",
-    DeleteProductSuccess = "Panel/DeleteProductSuccess",
-    DeleteProductFail = "Panel/DeleteProductFail",
+    DeleteProduct = "ProductActionTypes/DeleteProduct",
+    DeleteProductSuccess = "ProductActionTypes/DeleteProductSuccess",
+    DeleteProductFail = "ProductActionTypes/DeleteProductFail",
+
+    //Gallery
+    GalleryFetch = "ProductActionTypes/GalleryFetch",
+    GalleryFetchSuccess = "ProductActionTypes/GalleryFetchSuccess",
+    GalleryFetchFail = "ProductActionTypes/GalleryFetchFail",
     
 }

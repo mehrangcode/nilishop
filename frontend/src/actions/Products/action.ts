@@ -86,4 +86,22 @@ import { EModal } from "../../Utils/Errors/Modal";
         }
         
     }
+
+
+    //####################################### Gallery Actions
+
+    export const getGalleryDir= (path: string): AppAction<ActionModel> => async (dispatch, getState) => {
+        dispatch({type: ProductActionTypes.GalleryFetch})
+        try {
+            const res = await ProductApi.getGalleryDir(path)
+            if(res.data){
+                dispatch({type: ProductActionTypes.GalleryFetchSuccess, data: res.data})
+            }
+        } catch (error) {
+            //loagin perosses faild
+            dispatch({type: ProductActionTypes.GalleryFetchFail})
+            EModal(error)
+        }
+        
+    }
 // };

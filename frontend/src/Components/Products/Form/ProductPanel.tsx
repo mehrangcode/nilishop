@@ -10,6 +10,7 @@ import { RouteComponentProps } from "react-router";
 import Introduction from "./Introduction";
 import Attributes from "./Attributes";
 import Specifications from "./Specifications";
+import Gallery from "./Gallery";
 
 type IProps = IProductState & typeof ProductActions & IFormProps & RouteComponentProps<{ crudType: string }>;
 
@@ -102,7 +103,7 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
                             <Introduction {...props} />
                         </div>
                         <div className="panelItem" style={step === 1 ? { display: "block" } : { display: "none" }}>
-                            <h3>Gallery</h3>
+                            <Gallery {...props} />
                         </div>
                         <div className="panelItem" style={step === 2 ? { display: "block" } : { display: "none" }}>
 

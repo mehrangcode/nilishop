@@ -11,6 +11,10 @@ const unloadedState: IProductState = {
         loading: "",
         data: null,
         open: ""
+    },
+    gallery: {
+        loading: false,
+        data: []
     }
 };
 
@@ -156,6 +160,36 @@ export const ProductReducer: Reducer<IProductState> = (
                 itemCRUD: {
                     ...state.itemCRUD,
                     loading: ""
+                },
+            } as IProductState;
+        }
+
+        //Gallery
+        case ProductActionTypes.GalleryFetch: {
+            return {
+                ...state,
+                gallery: {
+                    ...state.gallery,
+                    loading: true
+                },
+            } as IProductState;
+        }
+        case ProductActionTypes.GalleryFetchSuccess: {
+            return {
+                ...state,
+                gallery: {
+                    ...state.gallery,
+                    loading: false,
+                    data: action.data
+                },
+            } as IProductState;
+        }
+        case ProductActionTypes.GalleryFetchFail: {
+            return {
+                ...state,
+                gallery: {
+                    ...state.gallery,
+                    loading: false
                 },
             } as IProductState;
         }
