@@ -24,12 +24,12 @@ class LoaderController extends Controller
                 if(!in_array($file, array(".", ".."))) {
                     if(is_dir($path."/".$file)){
                         if($this->isEmpty($path."/".$file)){
-                            $the_file = array("isDir" => true, "name" => $file, 'empty' => true, "path" => "".realpath($file));
+                            $the_file = array("isDir" => true, "name" => $file, 'empty' => true, "path" => $path);
                         } else {
-                            $the_file = array("isDir" => true, "name" => $file, 'empty' => false, "path" => "".realpath($file));
+                            $the_file = array("isDir" => true, "name" => $file, 'empty' => false, "path" => $path);
                         }
                     } else {
-                        $the_file = array("isDir" => false, "name" => $file, 'empty' => true, "path" => "".realpath($file));
+                        $the_file = array("isDir" => false, "name" => $file, 'empty' => true, "path" => $path);
                     }
                     $data[] = $the_file;
                 }
