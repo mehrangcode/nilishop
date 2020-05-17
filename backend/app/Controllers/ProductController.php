@@ -17,7 +17,7 @@ class ProductController extends Controller
         return $response->withStatus(200)->withJson($data);
     }
     public function findOne ($request, $response, $productId) {
-        $data = Product::with('attributes')->with('specifications')->where('id', $productId)->first();
+        $data = Product::with(['attributes' => function ($query) { $query->orderBy('id', 'asc');} ])->with('specifications')->where('id', $productId)->first();
         if(!$data){
             return $response->withStatus(400)->withJson(["message" => "product not found"]);
          }
