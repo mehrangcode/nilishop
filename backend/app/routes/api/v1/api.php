@@ -20,6 +20,7 @@ $app->post('/api/uploader', function ($request, $response, $args)
    
 
 });
+$app ->post("/api/loader", "LoaderController:loader");
 $app->get('/api', function ($request, $response, $args) {
     return $response->withStatus(200)->write('Hello From API!');
 });

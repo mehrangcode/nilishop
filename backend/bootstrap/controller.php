@@ -38,3 +38,6 @@ $container['AdminPanelController'] = function($container) {
 $container['AttributeController'] = function($container) {
     return new \App\Controllers\AttributeController($container);
 };
+$container['LoaderController'] = function($container) {
+    return new \App\Controllers\LoaderController($container);
+};
