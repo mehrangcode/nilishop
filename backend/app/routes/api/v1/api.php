@@ -1,25 +1,8 @@
 <?php
 use App\Middleware\AccessMiddleware;
-$app->post('/api/uploader', function ($request, $response, $args)
-{
-    try {
-        
-        $files = $request->getUploadedFiles();
-    if (empty($files['image'])) {
-        throw new Exception('No file has been send');
-    }
-    $myFile = $files['image'];
-    if ($myFile->getError() === UPLOAD_ERR_OK) {
-        $uploadFileName = $myFile->getClientFilename();
-        $myFile->moveTo('../uploads/' . $uploadFileName);
-        return $response->withJson(['data' => ['link' => 'http://localhost/eshop/backend/uploads/' . $uploadFileName]]);
-    }
-    } catch (\Throwable $th) {
-        return $response->withStatus(500)->write($th);
-    }
-   
 
-});
+
+$app->post('/api/uploader', "LoaderController:uploader");
 $app ->post("/api/loader", "LoaderController:loader");
 $app->get('/api', function ($request, $response, $args) {
     return $response->withStatus(200)->write('Hello From API!');

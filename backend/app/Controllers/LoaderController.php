@@ -11,6 +11,27 @@ class LoaderController extends Controller
         $path = implode(DS, $class).".php";
         @require_once($path);
     }
+
+    public function uploader($request, $response, $args)
+    {
+        try {
+            
+            $files = $request->getUploadedFiles();
+        if (empty($files['image'])) {
+            throw new Exception('No file has been send');
+        }
+        $myFile = $files['image'];
+        if ($myFile->getError() === UPLOAD_ERR_OK) {
+            $uploadFileName = $myFile->getClientFilename();
+            $myFile->moveTo('../uploads/' . $uploadFileName);
+            return $response->withJson(['data' => ['link' => 'http://localhost/eshop/backend/uploads/' . $uploadFileName]]);
+        }
+        } catch (\Throwable $th) {
+            return $response->withStatus(500)->write($th);
+        }
+    
+
+    }
     public function loader($request, $response) {
         $path = $request->getparam("path") ?  '../uploads' . $request->getparam("path") : "../uploads";
         $rel = "/";
