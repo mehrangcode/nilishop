@@ -20,12 +20,18 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
     const [step, showStep] = useState<number>(0);
     const [attributes, modifyAttributes] = useState([]);
     const [specifications, modifySpecifications] = useState([]);
+    const [galleryImages, modifygalleryImages] = useState("");
     useEffect(() => {
         return () => {
             props.resetItem();
         }
     }, []);
 
+    const galleryImagesChangeHandler = (images: any) => {
+        console.log("Images: ", images)
+        modifygalleryImages(images)
+
+    }
     const attributesChangeHandler = (attrs: any) => {
         modifyAttributes(attrs)
     }
@@ -41,6 +47,7 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
                 const val: any = values.data;
                 val.attributes = attributes
                 val.specifications = specifications
+                val.gallery = galleryImages
             if (props.match.params.crudType.toLocaleLowerCase() === "create") {
                 props.createProduct(values.data, props.history)
             } else if (props.match.params.crudType.toLocaleLowerCase() === "edit") {
@@ -103,7 +110,7 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
                             <Introduction {...props} />
                         </div>
                         <div className="panelItem" style={step === 1 ? { display: "block" } : { display: "none" }}>
-                            <Gallery {...props} />
+                            <Gallery {...props} onChange={(value) => galleryImagesChangeHandler(value)} />
                         </div>
                         <div className="panelItem" style={step === 2 ? { display: "block" } : { display: "none" }}>
 
