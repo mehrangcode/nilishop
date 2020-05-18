@@ -56,7 +56,7 @@ class UserController extends Controller
                 'id'=> $user->id,
                 'name' => $user->name,
                 'roles' => $roles,
-                'permissions' =>  array_unique($user_permissions)
+                'policy' =>  array_unique($user_permissions)
             );
             
                 $token = $this->getToken($data);

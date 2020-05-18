@@ -1,5 +1,5 @@
 <?php
-
+use App\Middleware\AccessMiddleware;
 $app->post('/api/uploader', function ($request, $response, $args)
 {
     try {
@@ -53,7 +53,7 @@ $app->delete('/api/permission/{permissionId}', "PermissionController:delete");
 $app->post('/api/setRolesTo/{userId}', "UserController:setRolesToUser");
 
 //Products
-$app->get('/api/products', "ProductController:index");
+$app->get('/api/products', "ProductController:index")->setName('getProducts#20')->add(new AccessMiddleware($container));
 $app->get('/api/products/getProductsWithCategory', "ProductController:getProductsWithCategory");
 $app->get('/api/products/{productId}', "ProductController:findOne");
 $app->post('/api/products', "ProductController:create");
