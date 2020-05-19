@@ -47,9 +47,10 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
                 val.attributes = attributes
                 val.specifications = specifications
                 val.gallery = {id: null, images: galleryImages}
-            if (props.match.params.crudType.toLocaleLowerCase() === "create") {
-                props.createProduct(values.data, props.history)
-            } else if (props.match.params.crudType.toLocaleLowerCase() === "edit") {
+                if (props.match.params.crudType.toLocaleLowerCase() === "create") {
+                    props.createProduct(values.data, props.history)
+                } else if (props.match.params.crudType.toLocaleLowerCase() === "edit") {
+                    val.gallery = {id: props.itemCRUD.data.galleries[0].id, images: galleryImages}
                 props.editProduct(props.itemCRUD.data.id, values.data, props.history)
             }
         }

@@ -18,6 +18,12 @@ const Gallery = (props: IProps) => {
     const [folderName, setFolderName] = React.useState<string>("")
     React.useEffect(() => {
         props.getGalleryDir("")
+        if(props.itemCRUD.data){
+            let gallery = [];
+            gallery = props.itemCRUD.data.galleries[0] ? 
+            props.itemCRUD.data.galleries[0].images.split(",") : [];
+            saveImages(gallery)
+        }
     }, []);
     React.useEffect(() => {
         const imagesList = images.join(",")
