@@ -37,7 +37,7 @@ const Input = (props: IProps) => {
     return (
         <input
             className={props.className ? props.className : "input"}
-            value={props.value ? props.value : inputValue}
+            value={props.value || props.value === "" ? props.value : inputValue}
             onChange={onchangeHandler}
             id={props.id}
             type={props.type ? props.type : "text"}

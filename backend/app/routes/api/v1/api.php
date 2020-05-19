@@ -69,5 +69,9 @@ $app->post('/api/attrName', "AttributeController:createAttrName");
 $app->put('/api/attrName/{attrNameId}', "AttributeController:updateAttrName");
 $app->delete('/api/attrName/{attrNameId}', "AttributeController:deleteAttrName");
 
+
+//Gallery
+$app->post('/api/gallery/createfolder', "LoaderController:createFolder");
+
 //Admin Panel
 $app->get('/api/adminPanel', "AdminPanelController:index");

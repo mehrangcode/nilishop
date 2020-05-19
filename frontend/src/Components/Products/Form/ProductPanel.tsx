@@ -39,6 +39,7 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
         modifySpecifications(spec)
     }
     const onOk = (event: any) => {
+        console.log("EVENT: ", event)
         event.preventDefault();
         const values = props.onFormSubmit();
         console.log("values:" , values)
@@ -122,7 +123,7 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
                         </div>
                     </div>
                     <div className="col-3">
-                        <Button type="submit"> Submit </Button>
+                        <Button type="button"> Submit </Button>
                         <Button type="button" onClick={onCancel}>Cancel</Button>
                     </div>
                 </div>

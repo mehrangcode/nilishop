@@ -104,4 +104,22 @@ import { EModal } from "../../Utils/Errors/Modal";
         }
         
     }
+
+    //############################# MakeNewFolder
+    export const createNewFolder= (path: string, callBack: () => void): AppAction<ActionModel> => async (dispatch, getState) => {
+        dispatch({type: ProductActionTypes.MakeNewFolder});
+        try {
+            const res = await ProductApi.createNewFolder(path);
+            if(res.data){
+                dispatch({type: ProductActionTypes.MakeNewFolderSuccess});
+                callBack()
+                // getGalleryDir(path)(dispatch, getState);
+            }
+        } catch (error) {
+            //loagin perosses faild
+            dispatch({type: ProductActionTypes.MakeNewFolderFail});
+            EModal(error);
+        }
+        
+    }
 // };

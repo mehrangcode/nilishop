@@ -7,7 +7,10 @@ export const EModalHide = () => {
     }
 }
 export const EModal = (error: any) => {
-    let message: string = error.message
+    let message: string = error;
+    if(error.message){
+        message = error.message
+    }
     if(error.response){
         message = error.response.data.message
     }

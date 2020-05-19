@@ -5,5 +5,6 @@ export {
     deleteProducts, 
     getProductForEdit, 
     resetItem ,
-    getGalleryDir
+    getGalleryDir,
+    createNewFolder
 } from "./action";

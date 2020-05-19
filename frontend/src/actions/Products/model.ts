@@ -83,6 +83,18 @@ interface IGalleryFetchFail extends Action<string> {
 }
 
 
+//################################# MakeNewFolder
+interface IMakeNewFolder extends Action<string> {
+    type: ProductActionTypes.MakeNewFolder
+}
+interface IMakeNewFolderSuccess extends Action<string> {
+    type: ProductActionTypes.MakeNewFolderSuccess
+}
+interface IMakeNewFolderFail extends Action<string> {
+    type: ProductActionTypes.MakeNewFolderFail
+}
+
+
 
 
 
@@ -104,3 +116,6 @@ export type ActionModel = IGetProductsList
     | IGalleryFetch
     | IGalleryFetchSuccess
     | IGalleryFetchFail
+    | IMakeNewFolder
+    | IMakeNewFolderSuccess
+    | IMakeNewFolderFail

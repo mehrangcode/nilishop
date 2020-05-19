@@ -193,6 +193,33 @@ export const ProductReducer: Reducer<IProductState> = (
                 },
             } as IProductState;
         }
+        case ProductActionTypes.MakeNewFolder: {
+            return {
+                ...state,
+                gallery: {
+                    ...state.gallery,
+                    loading: true
+                },
+            } as IProductState;
+        }
+        case ProductActionTypes.MakeNewFolderSuccess: {
+            return {
+                ...state,
+                gallery: {
+                    ...state.gallery,
+                    loading: false
+                },
+            } as IProductState;
+        }
+        case ProductActionTypes.MakeNewFolderFail: {
+            return {
+                ...state,
+                gallery: {
+                    ...state.gallery,
+                    loading: false
+                },
+            } as IProductState;
+        }
 
        
 

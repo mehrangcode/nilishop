@@ -27,5 +27,10 @@ export enum ProductActionTypes {
     GalleryFetch = "ProductActionTypes/GalleryFetch",
     GalleryFetchSuccess = "ProductActionTypes/GalleryFetchSuccess",
     GalleryFetchFail = "ProductActionTypes/GalleryFetchFail",
+
+    //MakeNewFolder
+    MakeNewFolder = "ProductActionTypes/MakeNewFolder",
+    MakeNewFolderSuccess = "ProductActionTypes/MakeNewFolderSuccess",
+    MakeNewFolderFail = "ProductActionTypes/MakeNewFolderFail",
     
 }
