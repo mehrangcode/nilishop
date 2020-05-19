@@ -96,11 +96,6 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
                         onClick={() => showStep(5)}>
                         Related products
                 </div>
-                    <div
-                        className={step === 6 ? "tabHeader tabActive" : "tabHeader"}
-                        onClick={() => showStep(6)}>
-                        Preview
-                </div>
                 </div>
             </div>
             <form onSubmit={onOk}>
@@ -124,9 +119,6 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
                         </div>
                         <div className="panelItem" style={step === 5 ? { display: "block" } : { display: "none" }}>
                             <h3>Related products</h3>
-                        </div>
-                        <div className="panelItem" style={step === 6 ? { display: "block" } : { display: "none" }}>
-                            <h3>Preview</h3>
                         </div>
                     </div>
                     <div className="col-3">
