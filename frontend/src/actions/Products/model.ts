@@ -94,6 +94,17 @@ interface IMakeNewFolderFail extends Action<string> {
     type: ProductActionTypes.MakeNewFolderFail
 }
 
+//################################# UploadFile
+interface IUploadFile extends Action<string> {
+    type: ProductActionTypes.UploadFile
+}
+interface IUploadFileSuccess extends Action<string> {
+    type: ProductActionTypes.UploadFileSuccess
+}
+interface IUploadFileFail extends Action<string> {
+    type: ProductActionTypes.UploadFileFail
+}
+
 
 
 
@@ -119,3 +130,6 @@ export type ActionModel = IGetProductsList
     | IMakeNewFolder
     | IMakeNewFolderSuccess
     | IMakeNewFolderFail
+    | IUploadFile
+    | IUploadFileSuccess
+    | IUploadFileFail

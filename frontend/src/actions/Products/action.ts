@@ -122,4 +122,22 @@ import { EModal } from "../../Utils/Errors/Modal";
         }
         
     }
+
+    //############################# MakeNewFolder
+    export const uploadnewFile= (data: any, callBack: () => void): AppAction<ActionModel> => async (dispatch, getState) => {
+        dispatch({type: ProductActionTypes.UploadFile});
+        try {
+            const res = await ProductApi.uploadNewFile(data);
+            if(res.data){
+                dispatch({type: ProductActionTypes.UploadFileSuccess});
+                callBack()
+                // getGalleryDir(path)(dispatch, getState);
+            }
+        } catch (error) {
+            //loagin perosses faild
+            dispatch({type: ProductActionTypes.UploadFileFail});
+            EModal(error);
+        }
+        
+    }
 // };

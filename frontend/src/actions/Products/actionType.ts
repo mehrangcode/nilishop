@@ -32,5 +32,10 @@ export enum ProductActionTypes {
     MakeNewFolder = "ProductActionTypes/MakeNewFolder",
     MakeNewFolderSuccess = "ProductActionTypes/MakeNewFolderSuccess",
     MakeNewFolderFail = "ProductActionTypes/MakeNewFolderFail",
+
+    //UploadFile
+    UploadFile = "ProductActionTypes/UploadFile",
+    UploadFileSuccess = "ProductActionTypes/UploadFileSuccess",
+    UploadFileFail = "ProductActionTypes/UploadFileFail",
     
 }

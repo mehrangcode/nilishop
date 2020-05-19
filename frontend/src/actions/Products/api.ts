@@ -24,5 +24,8 @@ export const ProductApi = {
     createNewFolder : async (path: string) => {
         return axios.post(preUrl+ "/gallery/createfolder", {path})
     },
+    uploadNewFile : async (data: any) => {
+        return axios.post(preUrl+ "/fileuploader", data)
+    },
     
 }

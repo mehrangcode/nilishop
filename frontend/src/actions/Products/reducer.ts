@@ -220,6 +220,33 @@ export const ProductReducer: Reducer<IProductState> = (
                 },
             } as IProductState;
         }
+        case ProductActionTypes.UploadFile: {
+            return {
+                ...state,
+                gallery: {
+                    ...state.gallery,
+                    loading: true
+                },
+            } as IProductState;
+        }
+        case ProductActionTypes.UploadFileSuccess: {
+            return {
+                ...state,
+                gallery: {
+                    ...state.gallery,
+                    loading: false
+                },
+            } as IProductState;
+        }
+        case ProductActionTypes.UploadFileFail: {
+            return {
+                ...state,
+                gallery: {
+                    ...state.gallery,
+                    loading: false
+                },
+            } as IProductState;
+        }
 
        
 

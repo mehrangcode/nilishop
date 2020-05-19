@@ -6,5 +6,6 @@ export {
     getProductForEdit, 
     resetItem ,
     getGalleryDir,
-    createNewFolder
+    createNewFolder,
+    uploadnewFile
 } from "./action";

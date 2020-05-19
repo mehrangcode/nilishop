@@ -66,7 +66,23 @@ const Gallery = (props: IProps) => {
     const foldeNameChangeHandler = (name: string) => {
         setFolderName(name)
     }
-    console.log("FolderName " , folderName)
+    const imageFileHandler = (event: any) => {
+        event.preventDefault();
+        const file = event.target.files[0];
+        const formData = new FormData(); 
+     
+        // Update the formData object 
+        formData.append('filename',
+        path + "/" + file.name )
+        formData.append( 
+          "image", 
+          file
+        ); 
+
+        props.uploadnewFile(formData, () => {
+            props.getGalleryDir(path)
+        })
+    }
     return <div className="gallery">
         <Spinner loading={props.gallery.loading} />
         <div className="row">
@@ -89,6 +105,17 @@ const Gallery = (props: IProps) => {
                             Make new folder
                         </Button>
                     </div>
+                </div>
+
+            </div>
+            <div className="col-6">
+                <div className="row">
+                    <label htmlFor="imageFile"> Upload Your Image</label>
+                    <input type="file" 
+                    name="imageFile" 
+                    id="imageFile" 
+                    onChange={imageFileHandler}
+                    style={{display: "none"}}/>
                 </div>
             </div>
         </div>

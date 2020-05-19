@@ -3,6 +3,7 @@ use App\Middleware\AccessMiddleware;
 
 
 $app->post('/api/uploader', "LoaderController:uploader");
+$app->post('/api/fileuploader', "LoaderController:fileUploader");
 $app ->post("/api/loader", "LoaderController:loader");
 $app->get('/api', function ($request, $response, $args) {
     return $response->withStatus(200)->write('Hello From API!');
