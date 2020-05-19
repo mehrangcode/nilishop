@@ -4,7 +4,6 @@ import * as ProductActions from "../../../actions/Products";
 import { IFormProps } from "../../../Utils/FormController";
 import { RouteComponentProps } from "react-router";
 import folderPath from '../../../Assets/Icons/folder.svg';
-import { Link } from 'react-router-dom';
 import { galleryPath } from '../../../Utils/General/GConst';
 import Spinner from '../../../Utils/Spinner';
 import Input from '../../../Utils/Input';
