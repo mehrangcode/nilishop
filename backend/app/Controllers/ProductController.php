@@ -3,6 +3,8 @@
 namespace App\Controllers;
 use \App\Models\Product;
 use \App\Models\Specification;
+use \App\Models\Gallery;
+
 
 class ProductController extends Controller
 {
@@ -35,26 +37,32 @@ class ProductController extends Controller
         ]);
         if(!$product){
             return $response->withStatus(500)->withJson([
-                "message" => "SomeThing was Wrong" ]);
+                "message" => "SomeThing was Wrong in product" ]);
         }
         $attribute = AttributeController::CreateAttribute($request, $product->id);
         if(!$attribute) {
             return $response->withStatus(500)->withJson([
-                "message" => "SomeThing was Wrong" ]);
+                "message" => "SomeThing was Wrong in attribute" ]);
         }
         $specification = $this->modifySpecifications($request, $product->id);
         if(!$specification) {
             return $response->withStatus(500)->withJson([
-                "message" => "SomeThing was Wrong" ]);
+                "message" => "SomeThing was Wrong in specification" ]);
+        }
+        $gallery = GalleryController::create($request, $product->id);
+        if(!$gallery) {
+            return $response->withStatus(500)->withJson([
+                "message" => "SomeThing was Wrong in gallery" ]);
         }
         return $response->withStatus(200)->withJson([
             "message" => "Create Product Successful from CreateAttribute", 
-            'id' => $product->id,
-            'attr' => $tt
+            'id' => $product->id
             ]);
         
     }
 
+    
+    
     public function update ($request, $response, $productId) {
             $product = Product::where('id', $productId)->first();
             if(!$product){
@@ -80,6 +88,11 @@ class ProductController extends Controller
             if(!$specification) {
                 return $response->withStatus(500)->withJson([
                     "message" => "SomeThing was Wrong with updateSpecification" ]);
+            }
+            $gallery = GalleryController::update($request, $product->id);
+            if(!$gallery) {
+                return $response->withStatus(500)->withJson([
+                    "message" => "SomeThing was Wrong" ]);
             }
             return $response->withStatus(200)->withJson([
                 "message" => "Create Product Successful from updateAttribute", 

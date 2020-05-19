@@ -29,4 +29,8 @@ class Product extends Model
     {
         return $this->hasMany(Specification::class);
     }
+    public function galleries()
+    {
+        return $this->hasMany(Gallery::class);
+    }
 }

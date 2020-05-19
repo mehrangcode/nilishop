@@ -37,13 +37,12 @@ $app->delete('/api/permission/{permissionId}', "PermissionController:delete");
 $app->post('/api/setRolesTo/{userId}', "UserController:setRolesToUser");
 
 //Products
-$app->get('/api/products', "ProductController:index")->setName('getProducts#20')->add(new AccessMiddleware($container));
+$app->get('/api/products', "ProductController:index")->setName('getProducts#2')->add(new AccessMiddleware($container));
 $app->get('/api/products/getProductsWithCategory', "ProductController:getProductsWithCategory");
 $app->get('/api/products/{productId}', "ProductController:findOne");
 $app->post('/api/products', "ProductController:create");
 $app->put('/api/products/{productId}', "ProductController:update");
 $app->delete('/api/products/{productId}', "ProductController:delete");
-
 //category
 $app->get('/api/category', "CategoryController:index");
 $app->get('/api/categorydropDown', "CategoryController:dropDown");

@@ -41,3 +41,6 @@ $container['AttributeController'] = function($container) {
 $container['LoaderController'] = function($container) {
     return new \App\Controllers\LoaderController($container);
 };
+$container['GalleryController'] = function($container) {
+    return new \App\Controllers\GalleryController($container);
+};

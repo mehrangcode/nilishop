@@ -38,9 +38,7 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
     const specificationssChangeHandler = (spec: any) => {
         modifySpecifications(spec)
     }
-    const onOk = (event: any) => {
-        console.log("EVENT: ", event)
-        event.preventDefault();
+    const onOk = () => {
         const values = props.onFormSubmit();
         console.log("values:" , values)
         if (!values.err) {
@@ -48,7 +46,7 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
                 const val: any = values.data;
                 val.attributes = attributes
                 val.specifications = specifications
-                val.gallery = galleryImages
+                val.gallery = {id: null, images: galleryImages}
             if (props.match.params.crudType.toLocaleLowerCase() === "create") {
                 props.createProduct(values.data, props.history)
             } else if (props.match.params.crudType.toLocaleLowerCase() === "edit") {
@@ -123,7 +121,7 @@ const ProductPanel: React.FC<IProps> = (props: IProps) => {
                         </div>
                     </div>
                     <div className="col-3">
-                        <Button type="button"> Submit </Button>
+                        <Button type="button" onClick={onOk}> Submit </Button>
                         <Button type="button" onClick={onCancel}>Cancel</Button>
                     </div>
                 </div>
